@@ -1,9 +1,9 @@
 # Team Red README file
 
-## ** Team Members **
+## **Team Members**
 
 - *Ally*
 - *Adam*
 - *Andrea*
 
-!()[imageaddress]
+<!-- !()[imageaddress] -->
