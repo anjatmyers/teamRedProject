@@ -9,9 +9,9 @@ $(() => {
 
     var inOrOutATL = ((locationPreference) => {
         if (locationPreference === "Downtown Atlanta"){
-            let zipArr = ZipCodesITP;
+            let zipCodeObj = ZipCodesITP;
         } else if (locationPreference === "Atlanta Suburbs"){
-            let zipArr = ZipCodesOTP;
+            let zipCodeObj = ZipCodesOTP;
         }
         return zipCodeObj
     })
