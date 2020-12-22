@@ -1,0 +1,27 @@
+/* Color Palette for Site */
+/*  Tan =  #f4f1de
+/*  Red =  #e07a5f
+/*  Navy =  #3d405b
+/*  Green =  #81b29a
+/*  Yellow =  #f2cc8f
+ */
+
+body{
+    margin: 0px;
+    background-color: grey;
+    width: 100vw;
+    height: 100vh;
+}
+ .container-fluid {
+     background-color: #e07a5f;
+     
+     /* width: 375px;
+     height: 667px; */
+
+     width: 100vw;
+     height: 100vh;
+ }
+
+ .logIn {
+     background-color: #81b29a;
+ }
