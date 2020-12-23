@@ -29,64 +29,55 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 </script>
-<!--FILE LINKS-->
 <script src="/public/JS/app.js" defer></script>
-<<<<<<< HEAD
-=======
-<script src="/public/JS/script.js"></script>
->>>>>>> main
 <script src="JS/script.js"></script>
 
 
 <!-- Bootstrap CSS for design-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!-- Link to Stylesheet in css folder -->
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styleHome.css">
 </head>
 
 <body>
 
+
+
   <!--  outside div container-->
-  <div class="container-fluid d-flex flex-column justify-content-center">
-
-    <!-- logo div -->
-  <div class="mb-5 mb-lg-1 d-flex justify-content-center">
-    <img src="images/logo_tan.png" alt="Neighborhood Watch Logo" id="logo" class="">
-  </div>
-
-  <!-- div for text beneath logo -->
-  <div></div>
-    
-  <!-- div for login buttons -->
-  <div class=" d-flex flex-column align-items-center">
-
-    <button type="button" id="signInButton" class="btn logIn col-6 col-lg-2 my-1 p-2">Log In with Google</button>
-    <button type="button" id="signOutButton"class="btn logIn col-6 col-lg-2 my-1 p-2">Sign Out</button>
-    <button type="button" id="signUpButton"class="btn logIn col-6 col-lg-2 my-1 p-2">Sign Up</button>
-
-  </div>
+  <div class="container-fluid d-flex flex-column">
 
 
-    <!-- <section id="whenSignedOut"> -->
-        <!-- <button id="signInButton">Sign In with Google</button> -->
-        <!-- <div id="userDetails"></div> -->
-        <!-- <button id="signOutButton">Sign Out</button> -->
+<header class="fixed-top d-flex justify-content-between">
+    <div class="col-9 col-lg-5">
+    <img src="images/logo_tan.png" alt="Neighborhood Swatch Logo" id="logoHome" class="mx-3 mx-lg-5">
+    </div>
+    <div class="menu d-flex col-1 justify-content-center align-items-center mt-5 mx-5">
 
-    
-    <section id="whenSignedOut">
-        <!-- <button id="signInButton">Sign In with Google</button> -->
-        
+        <a href="#" role="button" type="button"  data-toggle="dropdown">
+          <img src="images/menuIconGreen.png" alt="menu icon" style="height: 40px;" class="mt-5" id="menuButton">
+        </a>
+       
+        <div class="dropdown-menu mt-4 p-4">
+          <a class="dropdown-item" href="#">Home</a>
+          <a class="dropdown-item" href="#">Resources</a>
+          <a class="dropdown-item" href="#">About Us</a>
+          <!-- <div class="dropdown-divider"></div> -->
+          <a class="dropdown-item" href="#">Sign Out</a>
+        </div>
+     
+    </div>
 
-    </section>
-    <section id="whenSignedIn" hidden="true">
-      <div id="userDetails"></div>
-      <!-- <button id="signOutButton">Sign Out</button> -->
-    </section>
+</header>
+ 
+<main></main>
 
-    
+<footer></footer>
 
-    <!-- </section> -->
-    <!-- <section id="whenSignedIn" hidden="true"></section> -->
+
+
+
+
+
 
 
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
