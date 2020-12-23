@@ -29,7 +29,7 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 </script>
-<script src="/public/JS/app.js" defer></script>
+<script src="/public/JS/homescreen.js" defer></script>
 <script src="JS/script.js"></script>
 
 
@@ -62,7 +62,7 @@
           <a class="dropdown-item" href="profile.html">Profile</a>
           <a class="dropdown-item" href="aboutus.html">About Us</a>
           <!-- <div class="dropdown-divider"></div> -->
-          <a class="dropdown-item" href="#">Sign Out</a>
+          <a class="dropdown-item" id="signOutButton" href="index.html">Sign Out</a>
         </div>
      
     </div>
@@ -71,9 +71,14 @@
 
 <div class="spacer"></div>
  
+
+<main>
+  <div id="userDetails"></div>
+
 <main class="">
   
   Home Page
+
 </main>
 
 <footer></footer>
