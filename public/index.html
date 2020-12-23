@@ -29,7 +29,9 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 </script>
+<!--FILE LINKS-->
 <script src="/public/JS/app.js" defer></script>
+<script src="/public/JS/script.js"></script>
 <script src="JS/script.js"></script>
 
 
@@ -54,8 +56,11 @@
     
   <!-- div for login buttons -->
   <div class=" d-flex flex-column align-items-center">
-    <button type="button" class="btn logIn col-6 col-lg-2 my-1 p-2" id="signInButton">Log In with Google</button>
-    <button type="button" class="btn logIn col-6 col-lg-2 my-1 p-2">Sign Up with Email</button>
+
+    <button type="button" id="signInButton" class="btn logIn col-6 col-lg-2 my-1 p-2">Log In with Google</button>
+    <button type="button" id="signOutButton"class="btn logIn col-6 col-lg-2 my-1 p-2">Sign Out</button>
+    <button type="button" id="signUpButton"class="btn logIn col-6 col-lg-2 my-1 p-2">Sign Up</button>
+
   </div>
 
 
@@ -64,8 +69,22 @@
         <!-- <div id="userDetails"></div> -->
         <!-- <button id="signOutButton">Sign Out</button> -->
 
+    
+    <section id="whenSignedOut">
+        <!-- <button id="signInButton">Sign In with Google</button> -->
+        
+
+    </section>
+    <section id="whenSignedIn" hidden="true">
+      <div id="userDetails"></div>
+      <!-- <button id="signOutButton">Sign Out</button> -->
+    </section>
+
+    
+
     <!-- </section> -->
     <!-- <section id="whenSignedIn" hidden="true"></section> -->
+
 
 
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
