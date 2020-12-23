@@ -1,0 +1,38 @@
+/* Color Palette for Site */
+/*  Tan =  #f4f1de
+/*  Red =  #e07a5f
+/*  Navy =  #3d405b
+/*  Green =  #81b29a
+/*  Yellow =  #f2cc8f
+ */
+
+body{
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+ .container-fluid {
+     background-color: #f4f1de;
+     width: 100vw;
+     height: 100vh;
+     margin: 0px;
+ }
+
+ header{
+     background-color: #e07a5f;
+     height: 20%;
+ }
+
+ #logoHome {
+     height: 250px;
+ }
+
+ .dropdown-menu {
+     background-color: #81b29a;
+ }
+
+.dropdown-item{
+    color: #f4f1de;
+    font-size: 24px;
+}
+.dropdown-menu .dropdown-item:active, .dropdown-menu .dropdown-item:hover{background-color: #f2cc8f !important;}
