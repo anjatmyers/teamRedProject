@@ -14,13 +14,13 @@ body{
  .container-fluid {
      background-color: #f4f1de;
      width: 100vw;
-     height: 100vh;
+     height: auto;
      margin: 0px;
  }
 
  header{
      background-color: #e07a5f;
-     height: 20%;
+     height: 175px;
  }
 
  #logoHome {
@@ -36,3 +36,7 @@ body{
     font-size: 24px;
 }
 .dropdown-menu .dropdown-item:active, .dropdown-menu .dropdown-item:hover{background-color: #f2cc8f !important;}
+
+.spacer{
+    height: 175px;
+}
