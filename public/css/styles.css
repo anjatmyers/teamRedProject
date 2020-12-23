@@ -25,3 +25,28 @@ body{
  .logIn {
      background-color: #81b29a;
  }
+
+
+ /* xs */
+#logo {
+    width: 350px;
+    height: auto;
+}
+/* sm */
+@media (min-width: 768px) {
+    #logo {
+        width: 400px;
+    }
+}
+/* md */
+@media (min-width: 992px) {
+    #logo {
+        width: 500px;
+    }
+}
+/* lg */
+@media (min-width: 1200px) {
+    #logo {
+        width: 500px;
+    }
+}
