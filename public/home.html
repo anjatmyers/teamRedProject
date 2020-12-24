@@ -37,6 +37,9 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!-- Link to Stylesheet in css folder -->
 <link rel="stylesheet" href="css/styleHome.css">
+<!-- link to google font Handlee -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -48,17 +51,18 @@
 
 
 <header class="fixed-top d-flex justify-content-between">
-    <div class="col-9 col-lg-5">
+    <div class="col-9 col-lg-3">
     <img src="images/logo_tan.png" alt="Neighborhood Swatch Logo" id="logoHome" class="mx-3 mx-lg-5">
     </div>
+    <!-- 3-lined green icon for dropdown menu below-->
     <div class="menu d-flex col-1 justify-content-center align-items-center mt-5 mx-5">
 
         <a href="#" role="button" type="button"  data-toggle="dropdown">
-          <img src="images/menuIconGreen.png" alt="menu icon" style="height: 40px;" class="mt-5" id="menuButton">
+          <img src="images/menuIconGreen.png" alt="menu icon" style="height: 40px;" class="d-lg-none hidden-lg mt-5" id="menuButton">
         </a>
        
         <div class="dropdown-menu mt-4 p-4">
-          <a class="dropdown-item" href="#">Home</a>
+          <a class="dropdown-item" href="home.html">Home</a>
           <a class="dropdown-item" href="profile.html">Profile</a>
           <a class="dropdown-item" href="aboutus.html">About Us</a>
           <!-- <div class="dropdown-divider"></div> -->
@@ -66,7 +70,25 @@
         </div>
      
     </div>
+    <!-- end of icon/dropdown -->
 
+
+    <!-- start of navbar container -->
+    <div class="navContainer d-flex col-9 d-flex flex-column justify-content-end">
+      
+      <!-- spacer div -->
+    <div class= "col-8 "><span></span></div>
+      <!-- end of spacer div -->
+
+      <nav class="navbar navbar-light d-none d-lg-block d-flex ml-auto w-100">
+        <a class="navbar-brand p-2 mx-5" href="#"></a>
+        <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 26px;" href="home.html">Home</a>
+        <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 26px;" href="profile.html">Profile</a>
+        <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 26px;" href="aboutus.html">About Us</a>
+        <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 20px;" href="#">Sign Out</a>
+      </nav>
+  </div> 
+  <!-- end of navbar container -->
 </header>
 
 <div class="spacer"></div>

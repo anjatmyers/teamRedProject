@@ -14,8 +14,20 @@ body{
  .container-fluid {
      background-color: #f4f1de;
      width: 100vw;
+     height: 100vh;
+     margin: 0px;
+ }
+ .profile {
+     background-color: #f4f1de;
+     width: 100vw;
      height: auto;
      margin: 0px;
+ }
+ .aboutUsPage {
+    background-color: #f4f1de;
+    width: 100vw;
+    height: auto;
+    margin: 0px;
  }
 
  header{
@@ -39,4 +51,23 @@ body{
 
 .spacer{
     height: 175px;
+}
+.navbar{
+    overflow: hidden;
+    background: #e07a5f;
+    font-family: 'Handlee', cursive;
+    
+}
+
+.aboutUs {
+    height: 325px;
+    border-radius: 50%;
+}
+.aboutUs2 {
+    height: 175px;
+    border-radius: 50%;
+}
+
+.name {
+    font-family: 'Handlee', cursive;
 }
