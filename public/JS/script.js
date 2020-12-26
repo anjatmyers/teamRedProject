@@ -1,8 +1,107 @@
 $(async() => {
 
-    var zipCodesITP = {30339:0, 30327:0, 30342:0, 30319: 0, 30341:0, 30345:0, 30033:0, 30329:0, 30324:0, 30326:0, 30305:0, 30318:0, 30363:0, 30309:0, 30306:0, 30307:0, 30030:0, 30079:0, 30002:0, 30032:0, 30317:0, 30316:0, 30315:0, 30354:0, 30337:0, 30344:0, 30310:0, 30311:0, 30308:0, 30313:0, 30303:0, 30314:0, 30312:0}
+    var zipCodesITP = [
+        {zipCode: 30339, averagePrice: 0}, 
+        {zipCode: 30327, averagePrice: 0}, 
+        {zipCode: 30342, averagePrice: 0}, 
+        {zipCode: 30319, averagePrice: 0}, 
+        {zipCode: 30341, averagePrice: 0}, 
+        {zipCode: 30345, averagePrice: 0}, 
+        {zipCode: 30033, averagePrice: 0}, 
+        {zipCode: 30329, averagePrice: 0}, 
+        {zipCode: 30324, averagePrice: 0}, 
+        {zipCode: 30326, averagePrice: 0}, 
+        {zipCode: 30305, averagePrice: 0}, 
+        {zipCode: 30318, averagePrice: 0}, 
+        {zipCode: 30363, averagePrice: 0}, 
+        {zipCode: 30309, averagePrice: 0} , 
+        {zipCode: 30306, averagePrice: 0}, 
+        {zipCode: 30307, averagePrice: 0}, 
+        {zipCode: 30030, averagePrice: 0}, 
+        {zipCode: 30079, averagePrice: 0}, 
+        {zipCode: 30002, averagePrice: 0}, 
+        {zipCode: 30032, averagePrice: 0}, 
+        {zipCode: 30317, averagePrice: 0}, 
+        {zipCode: 30316, averagePrice: 0}, 
+        {zipCode: 30315, averagePrice: 0}, 
+        {zipCode: 30354, averagePrice: 0}, 
+        {zipCode: 30337, averagePrice: 0}, 
+        {zipCode: 30344, averagePrice: 0}, 
+        {zipCode: 30310, averagePrice: 0}, 
+        {zipCode: 30311, averagePrice: 0}, 
+        {zipCode: 30308, averagePrice: 0}, 
+        {zipCode: 30313, averagePrice: 0}, 
+        {zipCode: 30303, averagePrice: 0}, 
+        {zipCode: 30314, averagePrice: 0}, 
+        {zipCode: 30312, averagePrice: 0}
+    ]
 
-    var zipCodesOTP = {30301:0, 30302:0, 30304:0, 30322:0, 30328:0, 30330:0, 30331:0, 30334:0, 30336:0, 30320:0, 30321:0, 30325:0, 30332:0, 30333:0, 30338:0, 30340:0, 30343:0, 30346:0, 30348:0, 30353:0, 30357:0, 30360:0, 30361:0, 30362:0, 30349:0, 30350:0, 30355:0, 30356:0, 30358:0, 30359:0, 30364:0, 30369:0, 30370:0, 30375:0, 30377:0, 30384:0, 30385:0, 30394:0, 30396:0, 30366:0, 30368:0, 30371:0, 30378:0, 30380:0, 30388:0, 30392:0, 30398:0, 31106:0, 31107:0, 31131:0, 31136:0, 31119:0, 31126:0, 31139:0, 31141:0, 31146:0, 31192:0, 31196:0, 31145:0, 31150:0, 31156:0, 31193:0, 31195:0, 39901:0}
+    var zipCodesOTP = [
+        {zipCode: 30301, averagePrice: 0}, 
+        {zipCode: 30302, averagePrice: 0}, 
+        {zipCode: 30304, averagePrice: 0}, 
+        {zipCode: 30322, averagePrice: 0} , 
+        {zipCode: 30328, averagePrice: 0}, 
+        {zipCode: 30330, averagePrice: 0}, 
+        {zipCode: 30331, averagePrice: 0}, 
+        {zipCode: 30334, averagePrice: 0}, 
+        {zipCode: 30336, averagePrice: 0}, 
+        {zipCode: 30320, averagePrice: 0}, 
+        {zipCode: 30321, averagePrice: 0}, 
+        {zipCode: 30325, averagePrice: 0}, 
+        {zipCode: 30332, averagePrice: 0}, 
+        {zipCode: 30333, averagePrice: 0}, 
+        {zipCode: 30338, averagePrice: 0}, 
+        {zipCode: 30340, averagePrice: 0}, 
+        {zipCode: 30343, averagePrice: 0}, 
+        {zipCode: 30346, averagePrice: 0}, 
+        {zipCode: 30348, averagePrice: 0}, 
+        {zipCode: 30353, averagePrice: 0}, 
+        {zipCode: 30357, averagePrice: 0}, 
+        {zipCode: 30360, averagePrice: 0}, 
+        {zipCode: 30361, averagePrice: 0}, 
+        {zipCode: 30362, averagePrice: 0}, 
+        {zipCode: 30349, averagePrice: 0}, 
+        {zipCode: 30350, averagePrice: 0}, 
+        {zipCode: 30355, averagePrice: 0}, 
+        {zipCode: 30356, averagePrice: 0}, 
+        {zipCode: 30358, averagePrice: 0}, 
+        {zipCode: 30359, averagePrice: 0}, 
+        {zipCode: 30364, averagePrice: 0}, 
+        {zipCode: 30369, averagePrice: 0}, 
+        {zipCode: 30370, averagePrice: 0}, 
+        {zipCode: 30375, averagePrice: 0}, 
+        {zipCode: 30377, averagePrice: 0}, 
+        {zipCode: 30384, averagePrice: 0}, 
+        {zipCode: 30385, averagePrice: 0}, 
+        {zipCode: 30394, averagePrice: 0}, 
+        {zipCode: 30396, averagePrice: 0}, 
+        {zipCode: 30366, averagePrice: 0}, 
+        {zipCode: 30368, averagePrice: 0}, 
+        {zipCode: 30371, averagePrice: 0}, 
+        {zipCode: 30378, averagePrice: 0}, 
+        {zipCode: 30380, averagePrice: 0}, 
+        {zipCode: 30388, averagePrice: 0}, 
+        {zipCode: 30392, averagePrice: 0}, 
+        {zipCode: 30398, averagePrice: 0}, 
+        {zipCode: 31106, averagePrice: 0}, 
+        {zipCode: 31107, averagePrice: 0}, 
+        {zipCode: 31131, averagePrice: 0}, 
+        {zipCode: 31136, averagePrice: 0}, 
+        {zipCode: 31119, averagePrice: 0}, 
+        {zipCode: 31126, averagePrice: 0}, 
+        {zipCode: 31139, averagePrice: 0}, 
+        {zipCode: 31141, averagePrice: 0}, 
+        {zipCode: 31146, averagePrice: 0}, 
+        {zipCode: 31192, averagePrice: 0}, 
+        {zipCode: 31196, averagePrice: 0}, 
+        {zipCode: 31145, averagePrice: 0}, 
+        {zipCode: 31150, averagePrice: 0}, 
+        {zipCode: 31156, averagePrice: 0}, 
+        {zipCode: 31193, averagePrice: 0}, 
+        {zipCode: 31195, averagePrice: 0}, 
+        {zipCode: 39901, averagePrice: 0}
+    ]
 
 
     // Inside or Outside Atlanta
@@ -27,38 +126,62 @@ $(async() => {
 
     // Average house for sale price for each zip code
 
-    var avgHomePrice = (listingObj, zipCodeObj) => {
+    var avgHomePrice = (listingObj, zipCodeObjArr) => {
         let properties = listingObj.properties;
-        for(zipCode in zipCodeObj){
+        // for(zipCode in zipCodeObj){
+        for(let i = 0 ; i < zipCodeObjArr.length ; i++){
             let numOfListings = 0;
             for(let listing of properties){
-                if (listing.address.postal_code === zipCode){
-                    zipCodeObj[zipCode] += listing.price;
+                if (listing.address.postal_code == zipCodeObjArr[i].zipCode){
+                    zipCodeObjArr[i].averagePrice += listing.price;
                     numOfListings += 1;
                 }
             }
             if (numOfListings > 0){
-                zipCodeObj[zipCode] = Math.floor(parseInt(zipCodeObj[zipCode]) / numOfListings)
+                zipCodeObjArr[i].averagePrice = Math.floor(parseInt(zipCodeObjArr[i].averagePrice) / numOfListings)
             }
             
 
         }
-        return zipCodeObj
+        return zipCodeObjArr
     }
+
 
     // Find Zip Code Recommendation based on Budget and Average Price of House
 
-    var recommendNeighborhood = ((zipCodeObj, budgetArr) => {
+    var recommendNeighborhood = ((zipCodeObjArr, budgetArr) => {
         let arrOfRecommendations = []
-        // zipCodeObj.sort((a,b) => (a.zipCode > b.zipCode) ? 1 : -1)
-        for(zipCode in zipCodeObj){
-            if (zipCodeObj[zipCode] > budgetArr[0] && zipCodeObj[zipCode] < budgetArr[1]){
-                arrOfRecommendations.push(zipCode)
+        zipCodeObjArr.sort((a,b) => (a.averagePrice > b.averagePrice) ? 1 : -1)
+        console.log(zipCodeObjArr);
+        for (i = 0 ; i < zipCodeObjArr.length ; i++){
+            if (zipCodeObjArr[i].averagePrice > budgetArr[0] && zipCodeObjArr[i].averagePrice < budgetArr[1]){
+                arrOfRecommendations.push(zipCodeObjArr[i].zipCode)
             }
         }
         
         return arrOfRecommendations
     })
+
+    // Shortening Recommendations Down to Three
+
+    var sortedRecommendations = (arrRec) => {
+        let arrOfThreeRec = [];
+        if (arrRec.length === 1){
+            arrOfThreeRec.push(arrRec[0]);
+            // Error msg for only 1 result
+        } else if (arrRec.length === 2 ){
+            arrOfThreeRec.push(arrRec[0]);
+            arrOfThreeRec.push(arrRec[arrRec.length - 1]);
+            // Error msg for only 2 results
+        } else if (arrRec.length > 3){
+            arrOfThreeRec.push(arrRec[0]);
+            arrOfThreeRec.push(arrRec[Math.floor(arrRec.length / 2)]);
+            arrOfThreeRec.push(arrRec[arrRec.length - 1]);
+            // Error msg for only 3 results
+        } 
+        return arrOfThreeRec
+    };
+    
 
     // Calling the Realtor API
 
@@ -78,23 +201,27 @@ $(async() => {
     const responseRealtor = await fetch(settings.url, settings.data); // raw Response
     const finalResponse = await responseRealtor.json(); // Json reponse / formatted response 
     
+    console.log(finalResponse);
     const averageHomePrice = avgHomePrice(finalResponse, zipCodesITP);
-    // console.log(averageHomePrice)
+    console.log(averageHomePrice)
 
     var budgetOfPerson = budget(6000);
 
     var recommendations = recommendNeighborhood(zipCodesITP, budgetOfPerson);
 
     console.log(recommendations);
+    
+    var threeRecommendations = sortedRecommendations(recommendations);
 
+    console.log(threeRecommendations);
 
     // Calling the Census API
 
     let censusURLs = [];
 
-    for (let i = 0 ; i < recommendations.length ; i++){
+    for (let i = 0 ; i < threeRecommendations.length ; i++){
 
-        let url = await fetch(`https://api.census.gov/data/2019/acs/acs5/profile?get=NAME,DP02_0001E,DP04_0046PE,DP04_0047PE,DP04_0003PE,DP05_0005E,DP05_0006E,DP05_0007E,DP05_0008E,DP05_0009E,DP05_0010E,DP05_0011E,DP05_0012E,DP05_0013E,DP05_0014E,DP05_0015E,DP05_0016E,DP05_0017E&for=zip%20code%20tabulation%20area:${recommendations[i]}&in=state:13`);
+        let url = await fetch(`https://api.census.gov/data/2019/acs/acs5/profile?get=NAME,DP02_0001E,DP04_0046PE,DP04_0047PE,DP04_0003PE,DP05_0005E,DP05_0006E,DP05_0007E,DP05_0008E,DP05_0009E,DP05_0010E,DP05_0011E,DP05_0012E,DP05_0013E,DP05_0014E,DP05_0015E,DP05_0016E,DP05_0017E&for=zip%20code%20tabulation%20area:${threeRecommendations[i]}&in=state:13`);
         censusURLs.push(url);
 
     }
@@ -107,14 +234,6 @@ $(async() => {
         arrRecommendations.push(urlFinalResponse);
     }
 
-    // Shortening Recommendations Down to 3 Options (If options are more than 3)
-
-    console.log(arrRecommendations.length);
-    if (arrRecommendations.length > 3){
-        arrRecommendations
-
-        arrRecommendations.splice(3, arrRecommendations.length)
-    }
 
     // Remove Index 0 of all internal arrays in arrRecommendations (index 0 = example of variables)
 
@@ -268,7 +387,7 @@ $(async() => {
             scales: {
                 yAxes : [{
                     ticks : {
-                        max : 10000,    
+                        max : 15000,    
                         min : 0
                     },
                     scaleLabel: {
@@ -375,50 +494,50 @@ $(async() => {
 
 
 
-{/* <div class="col-md-6 offset-md-3 my-5">
-            <div class="card">
-                <div class="row card-body d-flex justify-content-center">
-                    <h3>Recommendation 1</h3>
-                    <hr>
-                </div>
-                <div class="row card-body d-flex justify-content-center">
-                    <p>Age Demographics</p>
-                    <div class="row">
-                        <canvas id="myBarChart1" class="col"></canvas>
-                        <canvas id="myPieChart1" class="col"></canvas>
-                    </div>
-                </div>
+// {/* <div class="col-md-6 offset-md-3 my-5">
+//             <div class="card">
+//                 <div class="row card-body d-flex justify-content-center">
+//                     <h3>Recommendation 1</h3>
+//                     <hr>
+//                 </div>
+//                 <div class="row card-body d-flex justify-content-center">
+//                     <p>Age Demographics</p>
+//                     <div class="row">
+//                         <canvas id="myBarChart1" class="col"></canvas>
+//                         <canvas id="myPieChart1" class="col"></canvas>
+//                     </div>
+//                 </div>
 
-            </div>
+//             </div>
 
-      </div>
-      <div class="col-md-6 offset-md-3 my-5">
-            <div class="card">
-                <div class="row card-body d-flex justify-content-center">
-                    <h3>Recommendation 2</h3>
-                    <hr>
-                </div>
-                <div class="row card-body d-flex justify-content-center">
-                    <p>Age Demographics</p>
-                    <canvas id="myBarChart2" class="col"></canvas>
-                    <canvas id="myPieChart2" class="col"></canvas>
-                </div>
+//       </div>
+//       <div class="col-md-6 offset-md-3 my-5">
+//             <div class="card">
+//                 <div class="row card-body d-flex justify-content-center">
+//                     <h3>Recommendation 2</h3>
+//                     <hr>
+//                 </div>
+//                 <div class="row card-body d-flex justify-content-center">
+//                     <p>Age Demographics</p>
+//                     <canvas id="myBarChart2" class="col"></canvas>
+//                     <canvas id="myPieChart2" class="col"></canvas>
+//                 </div>
 
-            </div>
+//             </div>
 
-      </div>
-      <div class="col-md-6 offset-md-3 my-5">
-            <div class="card">
-                <div class="row card-body d-flex justify-content-center">
-                    <h3>Recommendation 3</h3>
-                    <hr>
-                </div>
-                <div class="row card-body d-flex justify-content-center">
-                    <p>Age Demographics</p>
-                    <canvas id="myBarChart3" class="col"></canvas>
-                    <canvas id="myPieChart3" class="col"></canvas>
-                </div>
+//       </div>
+//       <div class="col-md-6 offset-md-3 my-5">
+//             <div class="card">
+//                 <div class="row card-body d-flex justify-content-center">
+//                     <h3>Recommendation 3</h3>
+//                     <hr>
+//                 </div>
+//                 <div class="row card-body d-flex justify-content-center">
+//                     <p>Age Demographics</p>
+//                     <canvas id="myBarChart3" class="col"></canvas>
+//                     <canvas id="myPieChart3" class="col"></canvas>
+//                 </div>
 
-            </div>
+//             </div>
 
-      </div> */}
+//       </div> */}
