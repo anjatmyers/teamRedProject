@@ -2,11 +2,11 @@
 
 
 db.collection('profileData')
-// const whenSignedIn = document.getElementById('whenSignedIn');
-// const whenSignedOut = document.getElementById('whenSignedOut');
-// const signOutButton = document.getElementById('signOutButton');
+const whenSignedIn = document.getElementById('whenSignedIn');
+const whenSignedOut = document.getElementById('whenSignedOut');
+const signOutButton = document.getElementById('signOutButton');
 
-// signOutButton.onclick = () => auth.signOut();
+signOutButton.onclick = () => auth.signOut();
 
 // const auth = firebase.auth();
 
