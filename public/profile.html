@@ -6,7 +6,7 @@
     <title>Profile Page</title>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script> -->
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
@@ -47,7 +47,7 @@
             <a class="dropdown-item" href="profile.html">Profile</a>
             <a class="dropdown-item" href="aboutus.html">About Us</a>
             <!-- <div class="dropdown-divider"></div> -->
-            <a class="dropdown-item" href="#">Sign Out</a>
+            <a id="signOutButton" class="dropdown-item" href="index.html">Sign Out</a>
         </div>
         
     </div>
@@ -65,7 +65,7 @@
         <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 26px;" href="home.html">Home</a>
         <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 26px;" href="profile.html">Profile</a>
         <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 26px;" href="aboutus.html">About Us</a>
-        <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 20px;" href="#">Sign Out</a>
+        <a id="signOutButton" class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 20px;" href="index.html">Sign Out</a>
     </nav>
 </div> 
 <!-- end of navbar container -->
@@ -84,7 +84,7 @@
         <fieldset>
             <legend>Personal Information</legend>
             First name:<br>
-            <input id="firstName" type="text" value="First"><br>
+            <input id="firstName" type="text" name ="firstname" value="First"><br>
             Last name:<br>
             <input id="lastName" type="text" name="lastname" value="Last"><br><br>
         </fieldset>
@@ -110,9 +110,15 @@
         <fieldset>
             <legend>Finance</legend>
             Estimated Monthly Income: <br>
+
             $<input id="income" type="number" value="3000">.00 <br> <br>
             Estimated Monthly Expenses: <br>
             $<input id="expenses" type="number" name="" value="2000">.00 <br>
+
+            $<input id="income" type="number" name="income" value="3000">.00 <br> <br>
+            Estimated Mothly Expenses: <br>
+            $<input id="expenses" type="number" name="expenses" value="2000">.00 <br>
+
         </fieldset>
         <br>
         <input type="submit" id="submitButton" value="Submit">
@@ -145,8 +151,6 @@
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <!-- end of jQuery/bootstrap script tags -->
   <script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     var firebaseConfig = {
       apiKey: "AIzaSyCtJ3p51WD9L3iKPi3-cMjWIE6Qvp4I03E",
       authDomain: "neighborhood-swatch.firebaseapp.com",
@@ -155,12 +159,14 @@
       messagingSenderId: "381964362",
       appId: "1:381964362:web:bdf3671d6d902677d016b3",
       measurementId: "G-9Z13SJ78FE"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    const db = firebase.firestore();
-    </script>
+      };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  db.settings({timestampsInSnapshots: true});
+  firebase.analytics();
+  </script>
   <script src="js/profile.js"></script>
+
 </body>
 </html>
