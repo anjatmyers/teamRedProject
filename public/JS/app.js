@@ -38,28 +38,3 @@ auth.onAuthStateChanged(user => {
     }
 });
 
-//Form submission to database
-
-// const db = firebase.firestore();
-
-// const profileForm = document.getElementById('profileForm');
-// const submitButton = document.getElementById('submitButton');
-
-// let profileRef;
-// let unsubscribe;
-
-// auth.onAuthStateChanged(user =>{
-//     if (user) {
-//         profileRef = db.collection('ProfileData')
-//         submitButton.onclick = ()=>{
-//             profileRef.add({
-//                 email: user.email
-                
-                
-
-//             })
-//         }
-//     }
-// })
-
-
