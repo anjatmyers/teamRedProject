@@ -231,6 +231,7 @@ $(async() => {
         } 
         return arrOfThreeRec
     };
+
     
 
     // Calling the Realtor API
@@ -316,7 +317,90 @@ $(async() => {
     console.log(recommendation2);
     console.log(recommendation3);
 
-    // // Get Average Age Data
+
+    // Using Jquery to put Graphs for First Recommendation on the Page
+
+    var $main = $('.recommendations')
+
+    var $canvasBar1 = $('<canvas id="myBarChart1" class="col-6">');
+    var $canvasPie1 = $('<canvas id="myPieChart1" class="col-6">');
+    var $divCanvas1 = $('<div class="row">');
+    // var $pBarTitle1 = $('<p id="barTitle">');
+    var $divCardBody1 = $('<div class="row card-body d-flex justify-content-center">');
+    var $h3RecTitle1 = $('<h3 id="recTitle1">');
+    var $hr = $('<hr>');
+    var $divCardBody2 = $('<div class="row card-body d-flex justify-content-center">');
+    var $divCard1 = $('<div class="card">');
+    var $divContainer1 = $('<div class="container-fluid col-md-6 offset-md-3 my-5">');
+
+    $h3RecTitle1.html(`Recommendation 1: ${threeRecommendations[0]}`);
+    
+    $divCanvas1.append($canvasBar1);
+    $divCanvas1.append($canvasPie1);
+    $divCardBody1.append($divCanvas1);
+    $divCardBody2.append($h3RecTitle1);
+    $divCardBody2.append($hr);
+    $divCard1.append($divCardBody2);
+    $divCard1.append($divCardBody1);
+    $divContainer1.append($divCard1);
+
+    $main.append($divContainer1);
+
+
+    // Using Jquery to put Graphs for Second Recommendation on the Page
+
+    var $canvasBar2 = $('<canvas id="myBarChart2" class="col-6">');
+    var $canvasPie2 = $('<canvas id="myPieChart2" class="col-6">');
+    var $divCanvas2 = $('<div class="row">');
+    // var $pBarTitle1 = $('<p id="barTitle">');
+    var $divCardBody3 = $('<div class="row card-body d-flex justify-content-center">');
+    var $h3RecTitle2 = $('<h3 id="recTitle2">');
+    var $hr = $('<hr>');
+    var $divCardBody4 = $('<div class="row card-body d-flex justify-content-center">');
+    var $divCard2 = $('<div class="card">');
+    var $divContainer2 = $('<div class="container-fluid col-md-6 offset-md-3 my-5">');
+
+    $h3RecTitle2.html(`Recommendation 2: ${threeRecommendations[1]}`);
+    
+    $divCanvas2.append($canvasBar2);
+    $divCanvas2.append($canvasPie2);
+    $divCardBody3.append($divCanvas2);
+    $divCardBody4.append($h3RecTitle2);
+    $divCardBody4.append($hr);
+    $divCard2.append($divCardBody4);
+    $divCard2.append($divCardBody3);
+    $divContainer2.append($divCard2);
+
+    $main.append($divContainer2);
+
+
+    // Using Jquery to put Graphs for Third Recommendation on the Page
+
+    var $canvasBar3 = $('<canvas id="myBarChart3" class="col-6">');
+    var $canvasPie3 = $('<canvas id="myPieChart3" class="col-6">');
+    var $divCanvas3 = $('<div class="row">');
+    // var $pBarTitle3 = $('<p id="barTitle">');
+    var $divCardBody5 = $('<div class="row card-body d-flex justify-content-center">');
+    var $h3RecTitle3 = $('<h3 id="recTitle3">');
+    var $hr = $('<hr>');
+    var $divCardBody6 = $('<div class="row card-body d-flex justify-content-center">');
+    var $divCard3 = $('<div class="card">');
+    var $divContainer3 = $('<div class="container3-fluid col-md-6 offset-md-3 my-5">');
+
+    $h3RecTitle3.html(`Recommendation 3: ${threeRecommendations[2]}`);
+    
+    $divCanvas3.append($canvasBar3);
+    $divCanvas3.append($canvasPie3);
+    $divCardBody5.append($divCanvas3);
+    $divCardBody6.append($h3RecTitle3);
+    $divCardBody6.append($hr);
+    $divCard3.append($divCardBody6);
+    $divCard3.append($divCardBody5);
+    $divContainer3.append($divCard3);
+
+    $main.append($divContainer3);
+
+    // Get Average Age Data
 
     var ageData = ((recommendation) => {
         let ageDataArr = [];
@@ -437,7 +521,7 @@ $(async() => {
             scales: {
                 yAxes : [{
                     ticks : {
-                        max : 15000,    
+                        max : 10000,    
                         min : 0
                     },
                     scaleLabel: {
@@ -535,7 +619,8 @@ $(async() => {
             cutoutPercentage: 50,
         }
     });
-    
+
+
 
 
 
@@ -544,14 +629,14 @@ $(async() => {
 
 
 
-// {/* <div class="col-md-6 offset-md-3 my-5">
+// {/* <div class="container1 col-md-6 offset-md-3 my-5">
 //             <div class="card">
 //                 <div class="row card-body d-flex justify-content-center">
-//                     <h3>Recommendation 1</h3>
+//                     <h3 id="recTitle1">Recommendation 1</h3>
 //                     <hr>
 //                 </div>
 //                 <div class="row card-body d-flex justify-content-center">
-//                     <p>Age Demographics</p>
+//                     <p id="barTitle">Age Demographics</p>
 //                     <div class="row">
 //                         <canvas id="myBarChart1" class="col"></canvas>
 //                         <canvas id="myPieChart1" class="col"></canvas>
