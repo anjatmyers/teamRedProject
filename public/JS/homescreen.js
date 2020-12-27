@@ -4,7 +4,7 @@ const whenSignedOut = document.getElementById('whenSignedOut');
 const signOutButton = document.getElementById('signOutButton');
 const userDetails = document.getElementById('userDetails');
 
-
+console.log(userDetails);
 
 signOutButton.onclick = () => auth.signOut();
 
