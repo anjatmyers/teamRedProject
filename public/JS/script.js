@@ -1,3 +1,53 @@
+// const auth = firebase.auth();
+
+// auth.onAuthStateChanged(user => {
+//     if (user) {
+       
+//         // signed in... send to financials page
+//         // whenSignedIn.hidden = false;
+//         // whenSignedOut.hidden = true;
+//         userDetails.innerHTML = `<h2> Welcome, ${user.displayName}!`;
+//         // signInButton.hidden = true;
+//         // signUpButton.hidden = true;
+
+//     } else {
+//         // not signed in.  Prompt log-in.
+//         whenSignedIn.hidden = true;
+//         whenSignedOut.hidden = true;
+//         signOutButton.hidden = true;
+//         userDetails.innerHTML = '';
+//     }
+// });
+
+
+
+
+
+db.collection('profileData')
+
+db.collection("profileData").get().then((snapshot) =>{
+    snapshot.docs.forEach(doc =>{
+        let docObject = doc.data();
+        console.log(docObject)
+        // console.log(doc.data())
+        // for(x = 0; x < docObject.length; x++){
+            for(let x in docObject){
+                console.log(x);
+                if (x == profileForm.lastname.value){
+                    console.log(x)
+                }
+            }
+            // if(docObject.lastName == profileForm.lastname.value)
+            
+        })
+    // })
+    })
+
+
+
+
+
+
 $(async() => {
 
     var zipCodesITP = [
