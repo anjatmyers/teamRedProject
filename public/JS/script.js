@@ -1,47 +1,80 @@
-// const auth = firebase.auth();
 
-// auth.onAuthStateChanged(user => {
-//     if (user) {
-       
-//         // signed in... send to financials page
-//         // whenSignedIn.hidden = false;
-//         // whenSignedOut.hidden = true;
-//         userDetails.innerHTML = `<h2> Welcome, ${user.displayName}!`;
-//         // signInButton.hidden = true;
-//         // signUpButton.hidden = true;
-
-//     } else {
-//         // not signed in.  Prompt log-in.
-//         whenSignedIn.hidden = true;
-//         whenSignedOut.hidden = true;
-//         signOutButton.hidden = true;
-//         userDetails.innerHTML = '';
-//     }
-// });
+db.collection('profileData');
+const whenSignedIn = document.getElementById('whenSignedIn');
+const whenSignedOut = document.getElementById('whenSignedOut');
+const signOutButton = document.getElementById('signOutButton');
+const userDetails = document.getElementById('userDetails');
+const profileForm = document.getElementById('profileForm');
+const submitButton = document.getElementById('submitButton');
+signOutButton.onclick = () => auth.signOut();
 
 
 
-
-
-db.collection('profileData')
-
-db.collection("profileData").get().then((snapshot) =>{
-    snapshot.docs.forEach(doc =>{
-        let docObject = doc.data();
-        console.log(docObject)
-        // console.log(doc.data())
-        // for(x = 0; x < docObject.length; x++){
-            for(let x in docObject){
-                console.log(x);
-                if (x == profileForm.lastname.value){
-                    console.log(x)
-                }
-            }
-            // if(docObject.lastName == profileForm.lastname.value)
-            
-        })
-    // })
+profileForm.addEventListener('submit', (e) =>{
+    e.preventDefault();
+    // Sets users last name as doc id in Firebase.  FLAW:  Multiple last names will result in overwrite.
+    let userId = `${profileForm.lastname.value}`;
+    // + (Math.floor(Math.random() * 1000)); add this to line 23 to generate random number with uer ID to prevent duplicates in last name.  
+    
+    db.collection("profileData").doc(userId).set({
+        firstName : profileForm.firstname.value,
+        lastName : profileForm.lastname.value,
+        preference : profileForm.cityOrSuburb.value,
+        expenses : profileForm.expenses.value, 
+        income : profileForm.income.value
+        
     })
+    
+    .then(function() {
+        console.log("profile built!");
+    })
+    .catch(function(error) {
+        console.error("Error building profile: ", error);
+    });
+
+
+})
+
+//IF WE CAN PULL USERID FROM THE LOCAL SCOPE TO GLOBAL WE ARE GOOD
+var docId = [];
+
+
+var docRef = db.collection("profileData").doc("MacKinnon");
+
+docRef.get().then(function(doc) {
+    if (doc.exists) {
+        console.log("User Profile:", doc.data());
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("Profile does not exist!");
+    }
+}).catch(function(error) {
+    console.log("ERROR:", error);
+});
+
+
+
+
+
+// db.collection('profileData')
+
+// db.collection("profileData").get().then((snapshot) =>{
+//     snapshot.docs.forEach(doc =>{
+//         let docObject = doc.data();
+//         console.log(docObject)
+//         // console.log(doc.data())
+//         // for(x = 0; x < docObject.length; x++){
+//             for(let x in docObject){
+//                 console.log(x);
+//                 if (x == profileForm.lastname.value){
+//                     console.log(x)
+//                 }
+//             }
+//             // if(docObject.lastName == profileForm.lastname.value)
+            
+//         })
+//     // })
+//     })
 
 
 

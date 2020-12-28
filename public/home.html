@@ -107,11 +107,13 @@
     measurementId: "G-9Z13SJ78FE"
   };
   // Initialize Firebase
+
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
+  const db = firebase.firestore();
 </script>
 <script src="/public/JS/homescreen.js" defer></script>
-<script src="JS/script.js"></script>
+<script src="JS/script.js" defer></script>
 
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
      <script

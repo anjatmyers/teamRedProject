@@ -1,8 +1,8 @@
-const auth = firebase.auth();
-const whenSignedIn = document.getElementById('whenSignedIn');
-const whenSignedOut = document.getElementById('whenSignedOut');
-const signOutButton = document.getElementById('signOutButton');
-const userDetails = document.getElementById('userDetails');
+
+// const whenSignedIn = document.getElementById('whenSignedIn');
+// const whenSignedOut = document.getElementById('whenSignedOut');
+// const signOutButton = document.getElementById('signOutButton');
+// const userDetails = document.getElementById('userDetails');
 
 console.log(userDetails);
 
@@ -15,7 +15,7 @@ auth.onAuthStateChanged(user => {
         // signed in... send to financials page
         // whenSignedIn.hidden = false;
         // whenSignedOut.hidden = true;
-        userDetails.innerHTML = `<h2> Welcome, ${user.displayName}!`;
+        userDetails.innerHTML = `<h2> Welcome, ${user.displayName}!</h2>`;
         // signInButton.hidden = true;
         // signUpButton.hidden = true;
 
