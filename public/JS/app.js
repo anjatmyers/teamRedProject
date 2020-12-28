@@ -8,6 +8,8 @@ const userDetails = document.getElementById('userDetails');
 const signUpButton = document.getElementById('signUpButton');
 
 
+
+
 const provider = new firebase.auth.GoogleAuthProvider();
 
 
