@@ -23,25 +23,25 @@
 
 
 
-db.collection('profileData')
+// db.collection('profileData')
 
-db.collection("profileData").get().then((snapshot) =>{
-    snapshot.docs.forEach(doc =>{
-        let docObject = doc.data();
-        console.log(docObject)
-        // console.log(doc.data())
-        // for(x = 0; x < docObject.length; x++){
-            for(let x in docObject){
-                console.log(x);
-                if (x == profileForm.lastname.value){
-                    console.log(x)
-                }
-            }
-            // if(docObject.lastName == profileForm.lastname.value)
+// db.collection("profileData").get().then((snapshot) =>{
+//     snapshot.docs.forEach(doc =>{
+//         let docObject = doc.data();
+//         console.log(docObject)
+//         // console.log(doc.data())
+//         // for(x = 0; x < docObject.length; x++){
+//             for(let x in docObject){
+//                 console.log(x);
+//                 if (x == profileForm.lastname.value){
+//                     console.log(x)
+//                 }
+//             }
+//             // if(docObject.lastName == profileForm.lastname.value)
             
-        })
-    // })
-    })
+//         })
+//     // })
+//     })
 
 
 
@@ -64,7 +64,7 @@ $(async() => {
         {zipCode: 30305, averagePrice: 0}, 
         {zipCode: 30318, averagePrice: 0}, 
         {zipCode: 30363, averagePrice: 0}, 
-        {zipCode: 30309, averagePrice: 0} , 
+        {zipCode: 30309, averagePrice: 0}, 
         {zipCode: 30306, averagePrice: 0}, 
         {zipCode: 30307, averagePrice: 0}, 
         {zipCode: 30030, averagePrice: 0}, 
@@ -90,7 +90,7 @@ $(async() => {
         {zipCode: 30301, averagePrice: 0}, 
         {zipCode: 30302, averagePrice: 0}, 
         {zipCode: 30304, averagePrice: 0}, 
-        {zipCode: 30322, averagePrice: 0} , 
+        {zipCode: 30322, averagePrice: 0}, 
         {zipCode: 30328, averagePrice: 0}, 
         {zipCode: 30330, averagePrice: 0}, 
         {zipCode: 30331, averagePrice: 0}, 
@@ -252,19 +252,13 @@ $(async() => {
     const responseRealtor = await fetch(settings.url, settings.data); // raw Response
     const finalResponse = await responseRealtor.json(); // Json reponse / formatted response 
     
-    console.log(finalResponse);
     const averageHomePrice = avgHomePrice(finalResponse, zipCodesITP);
-    console.log(averageHomePrice)
 
-    var budgetOfPerson = budget(6000);
+    var budgetOfPerson = budget(6000); //change when we recieve data from user
 
     var recommendations = recommendNeighborhood(zipCodesITP, budgetOfPerson);
-
-    console.log(recommendations);
     
     var threeRecommendations = sortedRecommendations(recommendations);
-
-    console.log(threeRecommendations);
 
     // Calling the Census API
 
@@ -272,7 +266,7 @@ $(async() => {
 
     for (let i = 0 ; i < threeRecommendations.length ; i++){
 
-        let url = await fetch(`https://api.census.gov/data/2019/acs/acs5/profile?get=NAME,DP02_0001E,DP04_0046PE,DP04_0047PE,DP04_0003PE,DP05_0005E,DP05_0006E,DP05_0007E,DP05_0008E,DP05_0009E,DP05_0010E,DP05_0011E,DP05_0012E,DP05_0013E,DP05_0014E,DP05_0015E,DP05_0016E,DP05_0017E&for=zip%20code%20tabulation%20area:${threeRecommendations[i]}&in=state:13`);
+        let url = await fetch(`https://api.census.gov/data/2019/acs/acs5/profile?get=NAME,DP02_0001E,DP04_0046PE,DP04_0047PE,DP04_0003PE,DP05_0005E,DP05_0006E,DP05_0007E,DP05_0008E,DP05_0009E,DP05_0010E,DP05_0011E,DP05_0012E,DP05_0013E,DP05_0014E,DP05_0015E,DP05_0016E,DP05_0017E,DP03_0052E,DP03_0053E,DP03_0054E,DP03_0055E,DP03_0056E,DP03_0057E,DP03_0058E,DP03_0059E,DP03_0060E,DP03_0061E&for=zip%20code%20tabulation%20area:${threeRecommendations[i]}&in=state:13`);
         censusURLs.push(url);
 
     }
@@ -291,8 +285,6 @@ $(async() => {
     for (let i = 0 ; i < arrRecommendations.length ; i++){
         arrRecommendations[i].splice(0,1);
     }
-
-    console.log(arrRecommendations);
 
     // Setting each recommendation to a variable
 
@@ -313,19 +305,16 @@ $(async() => {
         recommendation3 = arrRecommendations[2];
         // Error msg for only 3 results
     } 
-    console.log(recommendation1);
-    console.log(recommendation2);
-    console.log(recommendation3);
 
 
     // Using Jquery to put Graphs for First Recommendation on the Page
 
     var $main = $('.recommendations')
 
-    var $canvasBar1 = $('<canvas id="myBarChart1" class="col-6">');
-    var $canvasPie1 = $('<canvas id="myPieChart1" class="col-6">');
+    var $canvasBar1 = $('<canvas id="myBarChart1" class="col">');
+    var $canvasPie1 = $('<canvas id="myPieChart1" class="col">');
+    var $canvasLine1 = $('<canvas id="myLineChart1" class="col">');
     var $divCanvas1 = $('<div class="row">');
-    // var $pBarTitle1 = $('<p id="barTitle">');
     var $divCardBody1 = $('<div class="row card-body d-flex justify-content-center">');
     var $h3RecTitle1 = $('<h3 id="recTitle1">');
     var $hr = $('<hr>');
@@ -337,6 +326,7 @@ $(async() => {
     
     $divCanvas1.append($canvasBar1);
     $divCanvas1.append($canvasPie1);
+    $divCanvas1.append($canvasLine1);
     $divCardBody1.append($divCanvas1);
     $divCardBody2.append($h3RecTitle1);
     $divCardBody2.append($hr);
@@ -349,10 +339,10 @@ $(async() => {
 
     // Using Jquery to put Graphs for Second Recommendation on the Page
 
-    var $canvasBar2 = $('<canvas id="myBarChart2" class="col-6">');
-    var $canvasPie2 = $('<canvas id="myPieChart2" class="col-6">');
+    var $canvasBar2 = $('<canvas id="myBarChart2" class="col">');
+    var $canvasPie2 = $('<canvas id="myPieChart2" class="col">');
+    var $canvasLine2 = $('<canvas id="myLineChart2" class="col">')
     var $divCanvas2 = $('<div class="row">');
-    // var $pBarTitle1 = $('<p id="barTitle">');
     var $divCardBody3 = $('<div class="row card-body d-flex justify-content-center">');
     var $h3RecTitle2 = $('<h3 id="recTitle2">');
     var $hr = $('<hr>');
@@ -364,6 +354,7 @@ $(async() => {
     
     $divCanvas2.append($canvasBar2);
     $divCanvas2.append($canvasPie2);
+    $divCanvas2.append($canvasLine2);
     $divCardBody3.append($divCanvas2);
     $divCardBody4.append($h3RecTitle2);
     $divCardBody4.append($hr);
@@ -376,10 +367,10 @@ $(async() => {
 
     // Using Jquery to put Graphs for Third Recommendation on the Page
 
-    var $canvasBar3 = $('<canvas id="myBarChart3" class="col-6">');
-    var $canvasPie3 = $('<canvas id="myPieChart3" class="col-6">');
+    var $canvasBar3 = $('<canvas id="myBarChart3" class="col">');
+    var $canvasPie3 = $('<canvas id="myPieChart3" class="col">');
+    var $canvasLine3 = $('<canvas id="myLineChart3" class="col">')
     var $divCanvas3 = $('<div class="row">');
-    // var $pBarTitle3 = $('<p id="barTitle">');
     var $divCardBody5 = $('<div class="row card-body d-flex justify-content-center">');
     var $h3RecTitle3 = $('<h3 id="recTitle3">');
     var $hr = $('<hr>');
@@ -391,6 +382,7 @@ $(async() => {
     
     $divCanvas3.append($canvasBar3);
     $divCanvas3.append($canvasPie3);
+    $divCanvas3.append($canvasLine3);
     $divCardBody5.append($divCanvas3);
     $divCardBody6.append($h3RecTitle3);
     $divCardBody6.append($hr);
@@ -424,7 +416,7 @@ $(async() => {
     var myBarChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['>5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
+            labels: ['<5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
             datasets: [{
                 label: "",
                 backgroundColor: 'rgb(255, 99, 132)',
@@ -436,6 +428,10 @@ $(async() => {
             
         },
         options: {
+            title: {
+                display: true,
+                text: 'Age Demographics'
+            },
             scales: {
                 yAxes : [{
                     ticks : {
@@ -467,7 +463,7 @@ $(async() => {
     var myBarChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['>5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
+            labels: ['<5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
             datasets: [{
                 label: "",
                 backgroundColor: 'rgb(255, 99, 132)',
@@ -479,6 +475,10 @@ $(async() => {
             
         },
         options: {
+            title: {
+                display: true,
+                text: 'Age Demographics'
+            },
             scales: {
                 yAxes : [{
                     ticks : {
@@ -506,7 +506,7 @@ $(async() => {
     var myBarChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['>5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
+            labels: ['<5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
             datasets: [{
                 label: "",
                 backgroundColor: 'rgb(255, 99, 132)',
@@ -518,6 +518,10 @@ $(async() => {
             
         },
         options: {
+            title: {
+                display: true,
+                text: 'Age Demographics'
+            },
             scales: {
                 yAxes : [{
                     ticks : {
@@ -572,6 +576,10 @@ $(async() => {
             
         },
         options: {
+            title: {
+                display: true,
+                text: 'Housing Inventory'
+            },
             cutoutPercentage: 50,
         }
     });
@@ -594,6 +602,10 @@ $(async() => {
             
         },
         options: {
+            title: {
+                display: true,
+                text: 'Housing Inventory'
+            },
             cutoutPercentage: 50,
         }
     });
@@ -616,7 +628,152 @@ $(async() => {
             
         },
         options: {
+            title: {
+                display: true,
+                text: 'Housing Inventory'
+            },
             cutoutPercentage: 50,
+        }
+    });
+
+    // Get Income Data for Recommendations
+
+    var incomeData = ((recommendation) => {
+        let incomeDataArr = [];
+        for (let i = 0 ; i < recommendation[0].length ; i++){
+            if (i > 17){
+                incomeDataArr.push(recommendation[0][i]);
+            }
+        }
+        return incomeDataArr
+    })
+
+    var incomeDataRec1 = incomeData(recommendation1);
+    var incomeDataRec2 = incomeData(recommendation2);
+    var incomeDataRec3 = incomeData(recommendation3);
+
+    // Line Graph of Income for Recommendation 1
+
+    var ctx = document.getElementById('myLineChart1').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['<$10,000', '$10,000 - $14,999', '$15,000 - $24,999', '$25,000 - $34,999', '$35,000 - $49,999', '$50,000 - $74,999', '$75,000 - $99,999', '$100,000 - $149,999', '$150,000 - $199,999', '>$200,000'],
+            datasets: [{
+                pointBackgroundColor: 'purple',
+                borderColor: 'black',
+                borderWidth: 2,
+                data: incomeDataRec1,
+                hoverBackgroundColor: 'orange',
+            }]
+            
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Income By Household'
+            },
+            scales: {
+                yAxes : [{
+                    ticks : {
+                        max : 3000,    
+                        min : 0
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Number of Households'
+                    }
+                }],
+                xAxes : [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Annual Income'
+                    }
+                }]
+            }
+        }
+    });
+
+    // Line Graph of Income for Recommendation 2
+
+    var ctx = document.getElementById('myLineChart2').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['<$10,000', '$10,000 - $14,999', '$15,000 - $24,999', '$25,000 - $34,999', '$35,000 - $49,999', '$50,000 - $74,999', '$75,000 - $99,999', '$100,000 - $149,999', '$150,000 - $199,999', '>$200,000'],
+            datasets: [{
+                pointBackgroundColor: 'purple',
+                borderColor: 'black',
+                borderWidth: 2,
+                data: incomeDataRec1,
+                hoverBackgroundColor: 'orange',
+            }]
+            
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Income By Household'
+            },
+            scales: {
+                yAxes : [{
+                    ticks : {
+                        max : 3000,    
+                        min : 0
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Number of Households'
+                    }
+                }],
+                xAxes : [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Annual Income'
+                    }
+                }]
+            }
+        }
+    });
+    // Line Graph of Income for Recommendation 3
+
+    var ctx = document.getElementById('myLineChart3').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['<$10,000', '$10,000 - $14,999', '$15,000 - $24,999', '$25,000 - $34,999', '$35,000 - $49,999', '$50,000 - $74,999', '$75,000 - $99,999', '$100,000 - $149,999', '$150,000 - $199,999', '>$200,000'],
+            datasets: [{
+                pointBackgroundColor: 'purple',
+                borderColor: 'black',
+                borderWidth: 2,
+                data: incomeDataRec1,
+                hoverBackgroundColor: 'orange',
+            }]
+            
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Income By Household'
+            },
+            scales: {
+                yAxes : [{
+                    ticks : {
+                        max : 3000,    
+                        min : 0
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Number of Households'
+                    }
+                }],
+                xAxes : [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Annual Income'
+                    }
+                }]
+            }
         }
     });
 
