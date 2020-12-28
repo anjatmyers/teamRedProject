@@ -23,7 +23,7 @@ auth.onAuthStateChanged(user => {
         // signed in... send to financials page
         whenSignedIn.hidden = false;
         whenSignedOut.hidden = true;
-        userDetails.innerHTML = `<h2> Welcome, ${user.displayName}!`;
+        userDetails.innerHTML = `<h2> Welcome, ${user.displayName}!</h2>`;
         signInButton.hidden = true;
         // signOutButton.hidden = false;
         signUpButton.hidden = true;

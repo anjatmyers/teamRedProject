@@ -41,16 +41,16 @@ profileForm.addEventListener('submit', (e) =>{
 })
 
 
-var docRef = db.collection("profileData").where("lastName", "==", `${profileForm.lastname.value}`);
+// var docRef = db.collection("profileData").where("lastName", "==", `${profileForm.lastname.value}`);
 
-docRef.get().then(function(doc) {
-    if (doc.exists) {
-        console.log("User Profile:", doc.data());
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("Profile does not exist!");
-    }
-}).catch(function(error) {
-    console.log("ERROR:", error);
-});
+// docRef.get().then(function(doc) {
+//     if (doc.exists) {
+//         console.log("User Profile:", doc.data());
+//     } else {
+//         // doc.data() will be undefined in this case
+//         console.log("Profile does not exist!");
+//     }
+// }).catch(function(error) {
+//     console.log("ERROR:", error);
+// });
 
