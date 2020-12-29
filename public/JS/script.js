@@ -12,31 +12,23 @@ signOutButton.onclick = () => auth.signOut();
 
 
 
+// var docRef = db.collection("profileData").doc("Cox");
 
-var docRef = db.collection("profileData").doc("Cox");
+// docRef.get().then(function(doc) {
+//     if (doc.exists) {
+//         console.log("User Profile:", doc.data());
+//         var userInfo = doc.data();
+//         var userIncome = userInfo.income;
+//         console.log(userIncome);
+//     } else {
+//         // doc.data() will be undefined in this case
+//         console.log("Profile does not exist!");
+//     }
+// }).catch(function(error) {
+//     console.log("ERROR:", error);
+// });
 
-console.log(docRef);
-
-docRef.get().then(function(doc) {
-    if (doc.exists) {
-        console.log("User Profile:", doc.data());
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("Profile does not exist!");
-    }
-}).catch(function(error) {
-    console.log("ERROR:", error);
-});
-
-
-
-
-
-
-
-
-
-
+// console.log(userIncome);
 
 
 
@@ -145,6 +137,40 @@ $(async() => {
         {zipCode: 39901, averagePrice: 0}
     ]
 
+    // Grabbing User Data from Firebase
+
+    var docRef = db.collection("profileData").doc("Cox");
+
+    // async function getProfileData() {
+    //     try {
+    //         const doc = await docRef.get();
+    //         if (doc) {
+    //         const userInfo = await doc.data();
+    //         const userIncome = userInfo.income;
+    //         console.log(userIncome);
+    //         return userIncome
+    //     }
+    //     } catch (error) {
+    //         console.log('ERROR:', error);
+    //     }
+    // }
+
+    const doc = await docRef.get();
+    if (doc) {
+        const userInfo = await doc.data();
+        const userIncome = userInfo.income;
+        if (userInfo.preference == "on"){
+            const userPreference = "Downtown Atlanta";
+            const userZipArr = zipCodesITP;
+        } else {
+            const userPreference = "Atlanta Suburbs";
+            const userZipArr = zipCodesOTP;
+        }
+        console.log(userIncome);
+    }
+    
+
+    console.log(getProfileData());
 
     // Inside or Outside Atlanta
 
@@ -244,11 +270,17 @@ $(async() => {
     const responseRealtor = await fetch(settings.url, settings.data); // raw Response
     const finalResponse = await responseRealtor.json(); // Json reponse / formatted response 
     
-    const averageHomePrice = avgHomePrice(finalResponse, zipCodesITP);
+    const averageHomePrice = avgHomePrice(finalResponse, zipUserArr);
 
-    var budgetOfPerson = budget(6000); //change when we recieve data from user
+    // console.log(userIncome);
 
-    var recommendations = recommendNeighborhood(zipCodesITP, budgetOfPerson);
+    // var budgetOfPerson = budget(userIncome); //change when we recieve data from user
+
+    console.log(budgetOfPerson);
+
+    var userZipCode = inOrOutATL(userPreference);
+
+    var recommendations = recommendNeighborhood(userZipCode, budgetOfPerson);
     
     var threeRecommendations = sortedRecommendations(recommendations);
 
