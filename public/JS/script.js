@@ -1,3 +1,8 @@
+
+const {apiKey} = require("./config.js")
+console.log(apiKey);
+
+
 const auth = firebase.auth();
 db.collection('profileData');
 const whenSignedIn = document.getElementById('whenSignedIn');
@@ -11,24 +16,28 @@ signOutButton.onclick = () => auth.signOut();
 // var userName = userDetails.innerHTML = `<h3>${user.displayName}'s Profile</h3>`;
 
 
+const currentUser = localStorage.getItem("currentUser")
+const currentUserObj = JSON.parse(currentUser);
 
-// var docRef = db.collection("profileData").doc("Cox");
+console.log(JSON.parse(currentUser));
 
-// docRef.get().then(function(doc) {
-//     if (doc.exists) {
-//         console.log("User Profile:", doc.data());
-//         var userInfo = doc.data();
-//         var userIncome = userInfo.income;
-//         console.log(userIncome);
-//     } else {
-//         // doc.data() will be undefined in this case
-//         console.log("Profile does not exist!");
-//     }
-// }).catch(function(error) {
-//     console.log("ERROR:", error);
-// });
+var docRef = db.collection("profileData").doc(currentUserObj.lastName);
 
-// console.log(userIncome);
+docRef.get().then(function(doc) {
+    if (doc.exists) {
+        console.log("User Profile:", doc.data());
+        var userInfo = doc.data();
+        var userIncome = userInfo.income;
+        console.log(userIncome);
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("Profile does not exist!");
+    }
+}).catch(function(error) {
+    console.log("ERROR:", error);
+});
+
+console.log(userIncome);
 
 
 
@@ -261,7 +270,7 @@ $(async() => {
             method: "GET",
             mode: 'cors',
             headers: {
-                "x-rapidapi-key": "20cdaadf39mshd73dd859c5dd37ep1391b4jsn869c03e656d7",
+                "x-rapidapi-key": apiKey,
                 "x-rapidapi-host": "realtor.p.rapidapi.com",
             }
         }  
