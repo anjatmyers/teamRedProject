@@ -8,59 +8,30 @@ const profileForm = document.getElementById('profileForm');
 const submitButton = document.getElementById('submitButton');
 signOutButton.onclick = () => auth.signOut();
 
+// var userName = userDetails.innerHTML = `<h3>${user.displayName}'s Profile</h3>`;
 
-
-profileForm.addEventListener('submit', (e) =>{
-    e.preventDefault();
-    // Sets users last name as doc id in Firebase.  FLAW:  Multiple last names will result in overwrite.
-    let userId = `${profileForm.lastname.value}`;
-    // + (Math.floor(Math.random() * 1000)); add this to line 23 to generate random number with uer ID to prevent duplicates in last name.  
-    
-    db.collection("profileData").doc(userId).set({
-        firstName : profileForm.firstname.value,
-        lastName : profileForm.lastname.value,
-        preference : profileForm.cityOrSuburb.value,
-        expenses : profileForm.expenses.value, 
-        income : profileForm.income.value
-        
-    })
-    
-    .then(function() {
-        console.log("profile built!");
-    })
-    .catch(function(error) {
-        console.error("Error building profile: ", error);
-    });
-
-
-})
 
 //IF WE CAN PULL USERID FROM THE LOCAL SCOPE TO GLOBAL WE ARE GOOD
-var docId = [];
+// var docId = [];
 
 
-var docRef = db.collection("profileData").doc("MacKinnon");
+// var docRef = db.collection("profileData").doc("Cox");
 
-docRef.get().then(function(doc) {
-    if (doc.exists) {
-        console.log("User Profile:", doc.data());
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("Profile does not exist!");
-    }
-}).catch(function(error) {
-    console.log("ERROR:", error);
-});
+// docRef.get().then(function(doc) {
+//     if (doc.exists) {
+//         console.log("User Profile:", doc.data());
+//         var userInfo = doc.data();
+//         var userIncome = userInfo.income;
+//         console.log(userIncome);
+//     } else {
+//         // doc.data() will be undefined in this case
+//         console.log("Profile does not exist!");
+//     }
+// }).catch(function(error) {
+//     console.log("ERROR:", error);
+// });
 
-
-
-
-
-
-
-
-
-
+// console.log(userIncome);
 
 
 
@@ -169,6 +140,40 @@ $(async() => {
         {zipCode: 39901, averagePrice: 0}
     ]
 
+    // Grabbing User Data from Firebase
+
+    var docRef = db.collection("profileData").doc("Cox");
+
+    // async function getProfileData() {
+    //     try {
+    //         const doc = await docRef.get();
+    //         if (doc) {
+    //         const userInfo = await doc.data();
+    //         const userIncome = userInfo.income;
+    //         console.log(userIncome);
+    //         return userIncome
+    //     }
+    //     } catch (error) {
+    //         console.log('ERROR:', error);
+    //     }
+    // }
+
+    const doc = await docRef.get();
+    if (doc) {
+        const userInfo = await doc.data();
+        const userIncome = userInfo.income;
+        if (userInfo.preference == "on"){
+            const userPreference = "Downtown Atlanta";
+            const userZipArr = zipCodesITP;
+        } else {
+            const userPreference = "Atlanta Suburbs";
+            const userZipArr = zipCodesOTP;
+        }
+        console.log(userIncome);
+    }
+    
+
+    console.log(getProfileData());
 
     // Inside or Outside Atlanta
 
@@ -268,11 +273,17 @@ $(async() => {
     const responseRealtor = await fetch(settings.url, settings.data); // raw Response
     const finalResponse = await responseRealtor.json(); // Json reponse / formatted response 
     
-    const averageHomePrice = avgHomePrice(finalResponse, zipCodesITP);
+    const averageHomePrice = avgHomePrice(finalResponse, zipUserArr);
 
-    var budgetOfPerson = budget(6000); //change when we recieve data from user
+    // console.log(userIncome);
 
-    var recommendations = recommendNeighborhood(zipCodesITP, budgetOfPerson);
+    // var budgetOfPerson = budget(userIncome); //change when we recieve data from user
+
+    console.log(budgetOfPerson);
+
+    var userZipCode = inOrOutATL(userPreference);
+
+    var recommendations = recommendNeighborhood(userZipCode, budgetOfPerson);
     
     var threeRecommendations = sortedRecommendations(recommendations);
 
