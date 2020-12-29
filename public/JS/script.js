@@ -1,6 +1,4 @@
 
-const {apiKey} = require("./config.js")
-console.log(apiKey);
 
 
 const auth = firebase.auth();
@@ -39,7 +37,7 @@ docRef.get().then(function(doc) {
     console.log("ERROR:", error);
 });
 
-console.log(userIncome);
+
 
 
 
