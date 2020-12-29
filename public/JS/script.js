@@ -1,4 +1,4 @@
-
+const auth = firebase.auth();
 db.collection('profileData');
 const whenSignedIn = document.getElementById('whenSignedIn');
 const whenSignedOut = document.getElementById('whenSignedOut');
@@ -10,9 +10,6 @@ signOutButton.onclick = () => auth.signOut();
 
 // var userName = userDetails.innerHTML = `<h3>${user.displayName}'s Profile</h3>`;
 
-
-//IF WE CAN PULL USERID FROM THE LOCAL SCOPE TO GLOBAL WE ARE GOOD
-// var docId = [];
 
 
 // var docRef = db.collection("profileData").doc("Cox");
@@ -336,7 +333,7 @@ $(async() => {
 
     // Using Jquery to put Graphs for First Recommendation on the Page
 
-    var $main = $('.recommendations')
+    var $main = $('.cardContainer')
 
     var $canvasBar1 = $('<canvas id="myBarChart1" class="col">');
     var $canvasPie1 = $('<canvas id="myPieChart1" class="col">');
@@ -346,10 +343,10 @@ $(async() => {
     var $h3RecTitle1 = $('<h3 id="recTitle1">');
     var $hr = $('<hr>');
     var $divCardBody2 = $('<div class="row card-body d-flex justify-content-center">');
-    var $divCard1 = $('<div class="card">');
-    var $divContainer1 = $('<div class="container-fluid col-md-6 offset-md-3 my-5">');
+    var $divCard1 = $('<div class="card m-1">');
+    var $divContainer1 = $('<div class="container-sm flex-sm-column col-lg-4">');
 
-    $h3RecTitle1.html(`Recommendation 1: ${threeRecommendations[0]}`);
+    $h3RecTitle1.html(`<h3>Neighborhood One:</h3> <h4>Zipcode - ${threeRecommendations[0]}</h4>`);
     
     $divCanvas1.append($canvasBar1);
     $divCanvas1.append($canvasPie1);
@@ -374,10 +371,10 @@ $(async() => {
     var $h3RecTitle2 = $('<h3 id="recTitle2">');
     var $hr = $('<hr>');
     var $divCardBody4 = $('<div class="row card-body d-flex justify-content-center">');
-    var $divCard2 = $('<div class="card">');
-    var $divContainer2 = $('<div class="container-fluid col-md-6 offset-md-3 my-5">');
+    var $divCard2 = $('<div class="card m-1">');
+    var $divContainer2 = $('<div class="container-sm flex-sm-column col-lg-4">');
 
-    $h3RecTitle2.html(`Recommendation 2: ${threeRecommendations[1]}`);
+    $h3RecTitle2.html(`<h3>Neighborhood Two:</h3> <h4>Zipcode - ${threeRecommendations[1]}</h4>`);
     
     $divCanvas2.append($canvasBar2);
     $divCanvas2.append($canvasPie2);
@@ -402,10 +399,10 @@ $(async() => {
     var $h3RecTitle3 = $('<h3 id="recTitle3">');
     var $hr = $('<hr>');
     var $divCardBody6 = $('<div class="row card-body d-flex justify-content-center">');
-    var $divCard3 = $('<div class="card">');
-    var $divContainer3 = $('<div class="container3-fluid col-md-6 offset-md-3 my-5">');
+    var $divCard3 = $('<div class="card m-1">');
+    var $divContainer3 = $('<div class="container-sm flex-sm-column col-lg-4">');
 
-    $h3RecTitle3.html(`Recommendation 3: ${threeRecommendations[2]}`);
+    $h3RecTitle3.html(`<h3>Neighborhood Three:</h3> <h4>Zipcode - ${threeRecommendations[2]}</h4>`);
     
     $divCanvas3.append($canvasBar3);
     $divCanvas3.append($canvasPie3);
@@ -446,8 +443,8 @@ $(async() => {
             labels: ['<5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
             datasets: [{
                 label: "",
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#e07a5f',
+                borderColor: '#e07a5f',
                 borderWidth: 2,
                 data: ageDataRec1,
                 hoverBackgroundColor: 'purple',
@@ -493,8 +490,8 @@ $(async() => {
             labels: ['<5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
             datasets: [{
                 label: "",
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#e07a5f',
+                borderColor: '#e07a5f',
                 borderWidth: 2,
                 data: ageDataRec2,
                 hoverBackgroundColor: 'purple',
@@ -536,8 +533,8 @@ $(async() => {
             labels: ['<5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
             datasets: [{
                 label: "",
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#e07a5f',
+                borderColor: '#e07a5f',
                 borderWidth: 2,
                 data: ageDataRec3,
                 hoverBackgroundColor: 'purple',
@@ -594,7 +591,7 @@ $(async() => {
         data: {
             labels: ['Owned', 'Rented', 'Vacant'],
             datasets: [{
-                backgroundColor: ['green', 'yellow', 'blue'],
+                backgroundColor: ['#81b29a', '#f2cc8f', '#3d405b'],
                 borderColor: 'white',
                 borderWidth: 2,
                 data: housingDataRec1,
@@ -620,7 +617,7 @@ $(async() => {
         data: {
             labels: ['Owned', 'Rented', 'Vacant'],
             datasets: [{
-                backgroundColor: ['green', 'yellow', 'blue'],
+                backgroundColor: ['#81b29a', '#f2cc8f', '#3d405b'],
                 borderColor: 'white',
                 borderWidth: 2,
                 data: housingDataRec2,
@@ -646,7 +643,7 @@ $(async() => {
         data: {
             labels: ['Owned', 'Rented', 'Vacant'],
             datasets: [{
-                backgroundColor: ['green', 'yellow', 'blue'],
+                backgroundColor: ['#81b29a', '#f2cc8f', '#3d405b'],
                 borderColor: 'white',
                 borderWidth: 2,
                 data: housingDataRec3,
@@ -685,10 +682,10 @@ $(async() => {
     var myPieChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['<$10,000', '$10,000 - $14,999', '$15,000 - $24,999', '$25,000 - $34,999', '$35,000 - $49,999', '$50,000 - $74,999', '$75,000 - $99,999', '$100,000 - $149,999', '$150,000 - $199,999', '>$200,000'],
+            labels: ['<$10K', '$10K - $14K', '$15K - $24K', '$25K - $34K', '$35K - $49K', '$50K - $74K', '$75K - $99K', '$100K - $149K', '$150K - $199K', '>$200K'],
             datasets: [{
                 pointBackgroundColor: 'purple',
-                borderColor: 'black',
+                borderColor: '#3d405b',
                 borderWidth: 2,
                 data: incomeDataRec1,
                 hoverBackgroundColor: 'orange',
@@ -727,10 +724,10 @@ $(async() => {
     var myPieChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['<$10,000', '$10,000 - $14,999', '$15,000 - $24,999', '$25,000 - $34,999', '$35,000 - $49,999', '$50,000 - $74,999', '$75,000 - $99,999', '$100,000 - $149,999', '$150,000 - $199,999', '>$200,000'],
+            labels: ['<$10K', '$10K - $14K', '$15K - $24K', '$25K - $34K', '$35K - $49K', '$50K - $74K', '$75K - $99K', '$100K - $149K', '$150K - $199K', '>$200K'],
             datasets: [{
                 pointBackgroundColor: 'purple',
-                borderColor: 'black',
+                borderColor: '#3d405b',
                 borderWidth: 2,
                 data: incomeDataRec1,
                 hoverBackgroundColor: 'orange',
@@ -768,10 +765,10 @@ $(async() => {
     var myPieChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['<$10,000', '$10,000 - $14,999', '$15,000 - $24,999', '$25,000 - $34,999', '$35,000 - $49,999', '$50,000 - $74,999', '$75,000 - $99,999', '$100,000 - $149,999', '$150,000 - $199,999', '>$200,000'],
+            labels: ['<$10K', '$10K - $14K', '$15K - $24K', '$25K - $34K', '$35K - $49K', '$50K - $74K', '$75K - $99K', '$100K - $149K', '$150K - $199K', '>$200K'],
             datasets: [{
                 pointBackgroundColor: 'purple',
-                borderColor: 'black',
+                borderColor: '#3d405b',
                 borderWidth: 2,
                 data: incomeDataRec1,
                 hoverBackgroundColor: 'orange',
