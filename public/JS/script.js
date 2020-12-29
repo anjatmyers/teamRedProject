@@ -13,6 +13,8 @@ const profileForm = document.getElementById('profileForm');
 const submitButton = document.getElementById('submitButton');
 signOutButton.onclick = () => auth.signOut();
 
+
+// console.log(user.displayName);
 // var userName = userDetails.innerHTML = `<h3>${user.displayName}'s Profile</h3>`;
 
 
@@ -146,9 +148,10 @@ $(async() => {
         {zipCode: 39901, averagePrice: 0}
     ]
 
+
     // Grabbing User Data from Firebase
 
-    var docRef = db.collection("profileData").doc("Cox");
+    var docRef = db.collection("profileData").doc("Snitker");
 
     // async function getProfileData() {
     //     try {
@@ -165,31 +168,39 @@ $(async() => {
     // }
 
     const doc = await docRef.get();
+    let userPreference;
+    let userZipArr;
+    let userIncome;
+
     if (doc) {
         const userInfo = await doc.data();
-        const userIncome = userInfo.income;
+        userIncome = userInfo.income;
         if (userInfo.preference == "on"){
-            const userPreference = "Downtown Atlanta";
-            const userZipArr = zipCodesITP;
+            userPreference = "Downtown Atlanta";
+            userZipArr = zipCodesITP;
         } else {
-            const userPreference = "Atlanta Suburbs";
-            const userZipArr = zipCodesOTP;
+            userPreference = "Atlanta Suburbs";
+            userZipArr = zipCodesOTP;
         }
         console.log(userIncome);
     }
     
 
-    console.log(getProfileData());
+    console.log(userIncome);
+    console.log(userZipArr);
+    console.log(userPreference);
 
     // Inside or Outside Atlanta
 
+    let zipArr;
+
     var inOrOutATL = ((locationPreference) => {
         if (locationPreference === "Downtown Atlanta"){
-            let zipArr = zipCodesITP;
+            zipArr = zipCodesITP;
         } else if (locationPreference === "Atlanta Suburbs"){
-            let zipArr = zipCodesOTP;
+            zipArr = zipCodesOTP;
         }
-        return zipCodeObj
+        return zipArr
     })
 
     // Find Budget Amount
@@ -279,11 +290,11 @@ $(async() => {
     const responseRealtor = await fetch(settings.url, settings.data); // raw Response
     const finalResponse = await responseRealtor.json(); // Json reponse / formatted response 
     
-    const averageHomePrice = avgHomePrice(finalResponse, zipUserArr);
+    const averageHomePrice = avgHomePrice(finalResponse, userZipArr);
 
     // console.log(userIncome);
 
-    // var budgetOfPerson = budget(userIncome); //change when we recieve data from user
+    var budgetOfPerson = budget(userIncome); //change when we recieve data from user
 
     console.log(budgetOfPerson);
 
