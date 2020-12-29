@@ -6,16 +6,28 @@
 /*  Yellow =  #f2cc8f
  */
 
+
 body{
     margin: 0px;
     width: 100vw;
     height: 100vh;
+    background-color: #f4f1de;
 }
  .container-fluid {
      background-color: #f4f1de;
-     width: 100vw;
-     height: 100vh;
+     width: auto;
+     height: auto;
      margin: 0px;
+ }
+
+ .cardContainer {
+     background-color: #f4f1de;
+     width: 100vw;
+     height: auto;
+     margin: 0px;
+     display: flex;
+     flex-wrap: wrap;
+
  }
  .profile {
      background-color: #f4f1de;
