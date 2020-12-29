@@ -11,14 +11,6 @@ signOutButton.onclick = () => auth.signOut();
 
 
 
-
-
-
-
-// var userName = userDetails.innerHTML = `<h3>${user.displayName}'s Profile</h3>`;
-
-// let lastName;
-
 profileForm.addEventListener('submit', (e) =>{
     e.preventDefault();
     // Sets users last name as doc id in Firebase.  FLAW:  Multiple last names will result in overwrite.
@@ -41,6 +33,8 @@ profileForm.addEventListener('submit', (e) =>{
 
 docRef.get().then(function(doc) {
     if (doc.exists) {
+        console.log(doc.data().lastName);
+        localStorage.setItem("currentUser",JSON.stringify(doc.data()));
         console.log("User Profile:", doc.data());
     } else {
         // doc.data() will be undefined in this case
@@ -54,7 +48,6 @@ docRef.get().then(function(doc) {
         console.error("Error building profile: ", error);
     });
 })
-
 
 
 
