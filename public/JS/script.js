@@ -1,12 +1,16 @@
 
-const auth = firebase.auth();
+
+// const auth = firebase.auth();
+
+
 db.collection('profileData');
-const whenSignedIn = document.getElementById('whenSignedIn');
-const whenSignedOut = document.getElementById('whenSignedOut');
+// const whenSignedIn = document.getElementById('whenSignedIn');
+// const whenSignedOut = document.getElementById('whenSignedOut');
 const signOutButton = document.getElementById('signOutButton');
-const userDetails = document.getElementById('userDetails');
+// const userDetails = document.getElementById('userDetails');
 const profileForm = document.getElementById('profileForm');
 const submitButton = document.getElementById('submitButton');
+
 signOutButton.onclick = () => auth.signOut();
 
 
@@ -14,7 +18,6 @@ const currentUser = localStorage.getItem("currentUser")
 const currentUserObj = JSON.parse(currentUser);
 
 var docRef = db.collection("profileData").doc(currentUserObj.lastName);
-    
 
 $(async() => {
 
@@ -121,15 +124,15 @@ $(async() => {
         {zipCode: 39901, averagePrice: 0}
     ]
 
-    // Getting User Info from Firebase
+    // Grabbing User Data from Firebase
 
     const doc = await docRef.get();
     let userPreference;
     let userZipArr;
-    let userIncome;
+     let userIncome;
 
     if (doc) {
-        const userInfo = await doc.data();
+        const userInfo = await doc.data(currentUserObj.lastName);
         userIncome = userInfo.income;
         if (userInfo.preference == "on"){
             userPreference = "Downtown Atlanta";
