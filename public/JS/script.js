@@ -1,43 +1,21 @@
 
+// const auth = firebase.auth();
 
-const auth = firebase.auth();
 db.collection('profileData');
-const whenSignedIn = document.getElementById('whenSignedIn');
-const whenSignedOut = document.getElementById('whenSignedOut');
+// const whenSignedIn = document.getElementById('whenSignedIn');
+// const whenSignedOut = document.getElementById('whenSignedOut');
 const signOutButton = document.getElementById('signOutButton');
-const userDetails = document.getElementById('userDetails');
+// const userDetails = document.getElementById('userDetails');
 const profileForm = document.getElementById('profileForm');
 const submitButton = document.getElementById('submitButton');
+
 signOutButton.onclick = () => auth.signOut();
-
-
-// console.log(user.displayName);
-// var userName = userDetails.innerHTML = `<h3>${user.displayName}'s Profile</h3>`;
 
 
 const currentUser = localStorage.getItem("currentUser")
 const currentUserObj = JSON.parse(currentUser);
 
-console.log(JSON.parse(currentUser));
-
 var docRef = db.collection("profileData").doc(currentUserObj.lastName);
-
-// docRef.get().then(function(doc) {
-//     if (doc.exists) {
-//         console.log("User Profile:", doc.data());
-//         var userInfo = doc.data();
-//         var userIncome = userInfo.income;
-//         console.log(userIncome);
-//     } else {
-//         // doc.data() will be undefined in this case
-//         console.log("Profile does not exist!");
-//     }
-// }).catch(function(error) {
-//     console.log("ERROR:", error);
-// });
-
-
-
 
 $(async() => {
 
@@ -144,29 +122,13 @@ $(async() => {
         {zipCode: 39901, averagePrice: 0}
     ]
 
-
     // Grabbing User Data from Firebase
 
-    // var docRef = db.collection("profileData").doc("Snitker");
-
-    // async function getProfileData() {
-    //     try {
-    //         const doc = await docRef.get();
-    //         if (doc) {
-    //         const userInfo = await doc.data();
-    //         const userIncome = userInfo.income;
-    //         console.log(userIncome);
-    //         return userIncome
-    //     }
-    //     } catch (error) {
-    //         console.log('ERROR:', error);
-    //     }
-    // }
 
     const doc = await docRef.get();
     let userPreference;
     let userZipArr;
-    let userIncome;
+     let userIncome;
 
     if (doc) {
         const userInfo = await doc.data(currentUserObj.lastName);
@@ -178,13 +140,8 @@ $(async() => {
             userPreference = "Atlanta Suburbs";
             userZipArr = zipCodesOTP;
         }
-        console.log(userIncome);
     }
-    
 
-    console.log(userIncome);
-    console.log(userZipArr);
-    console.log(userPreference);
 
     // Inside or Outside Atlanta
 
@@ -202,9 +159,18 @@ $(async() => {
     // Find Budget Amount
 
     var budget = (income) => {
-        let housePrice = (((income * 12)-10000)/0.20);
-        let lowEndBudget = housePrice - 100000;
-        let highEndBudget = housePrice + 100000;
+        let housePrice;
+        let lowEndBudget;
+        let highEndBudget;
+        if (income < 10000){
+            housePrice = (((income * 12)-10000)/0.20);
+            lowEndBudget = housePrice - 100000;
+            highEndBudget = housePrice + 100000;
+        } else {
+            housePrice = (((120000)-10000)/0.20);
+            lowEndBudget = housePrice - 100000;
+            highEndBudget = housePrice + 100000;
+        }
         return [lowEndBudget, highEndBudget]
     }
 
@@ -236,15 +202,18 @@ $(async() => {
     var recommendNeighborhood = ((zipCodeObjArr, budgetArr) => {
         let arrOfRecommendations = []
         zipCodeObjArr.sort((a,b) => (a.averagePrice > b.averagePrice) ? 1 : -1)
-        console.log(zipCodeObjArr);
         for (i = 0 ; i < zipCodeObjArr.length ; i++){
             if (zipCodeObjArr[i].averagePrice > budgetArr[0] && zipCodeObjArr[i].averagePrice < budgetArr[1]){
                 arrOfRecommendations.push(zipCodeObjArr[i].zipCode)
+            }
+            if (zipCodeObjArr[i].averagePrice == 0){
+                arrOfRecommendations = [];
             }
         }
         
         return arrOfRecommendations
     })
+
 
     // Shortening Recommendations Down to Three
 
@@ -292,584 +261,237 @@ $(async() => {
 
     var budgetOfPerson = budget(userIncome); //change when we recieve data from user
 
-    console.log(budgetOfPerson);
-
     var userZipCode = inOrOutATL(userPreference);
 
     var recommendations = recommendNeighborhood(userZipCode, budgetOfPerson);
+
+    if (recommendations.length < 1){
+
+        let $modal = $('#exampleModal');
+        $modal.modal('show');
+
+        let $recMsg = $('#recommendationsMsg');
+        $recMsg.hide();
+
+        let $editButton = $('#editButton');
+        $editButton.click(function(){
+            window.location = "profile.html";
+        })
+
+    } else {
     
-    var threeRecommendations = sortedRecommendations(recommendations);
+        var threeRecommendations = sortedRecommendations(recommendations);
 
-    // Calling the Census API
+        // Calling the Census API
 
-    let censusURLs = [];
+        let censusURLs = [];
 
-    for (let i = 0 ; i < threeRecommendations.length ; i++){
+        for (let i = 0 ; i < threeRecommendations.length ; i++){
 
-        let url = await fetch(`https://api.census.gov/data/2019/acs/acs5/profile?get=NAME,DP02_0001E,DP04_0046PE,DP04_0047PE,DP04_0003PE,DP05_0005E,DP05_0006E,DP05_0007E,DP05_0008E,DP05_0009E,DP05_0010E,DP05_0011E,DP05_0012E,DP05_0013E,DP05_0014E,DP05_0015E,DP05_0016E,DP05_0017E,DP03_0052E,DP03_0053E,DP03_0054E,DP03_0055E,DP03_0056E,DP03_0057E,DP03_0058E,DP03_0059E,DP03_0060E,DP03_0061E&for=zip%20code%20tabulation%20area:${threeRecommendations[i]}&in=state:13`);
-        censusURLs.push(url);
+            let url = await fetch(`https://api.census.gov/data/2019/acs/acs5/profile?get=NAME,DP02_0001E,DP04_0046PE,DP04_0047PE,DP04_0003PE,DP05_0005E,DP05_0006E,DP05_0007E,DP05_0008E,DP05_0009E,DP05_0010E,DP05_0011E,DP05_0012E,DP05_0013E,DP05_0014E,DP05_0015E,DP05_0016E,DP05_0017E,DP03_0052E,DP03_0053E,DP03_0054E,DP03_0055E,DP03_0056E,DP03_0057E,DP03_0058E,DP03_0059E,DP03_0060E,DP03_0061E&for=zip%20code%20tabulation%20area:${threeRecommendations[i]}&in=state:13`);
+            censusURLs.push(url);
 
-    }
-
-    let arrRecommendations = [];
-
-    for (let i = 0 ; i < censusURLs.length ; i++){
-
-        let urlFinalResponse = await censusURLs[i].json();
-        arrRecommendations.push(urlFinalResponse);
-    }
-
-
-    // Remove Index 0 of all internal arrays in arrRecommendations (index 0 = example of variables)
-
-    for (let i = 0 ; i < arrRecommendations.length ; i++){
-        arrRecommendations[i].splice(0,1);
-    }
-
-    // Setting each recommendation to a variable
-
-    let recommendation1;
-    let recommendation2;
-    let recommendation3;
-
-    if (arrRecommendations.length === 1){
-        recommendation1 = arrRecommendations[0];
-        // Error msg for only 1 result
-    } else if (arrRecommendations.length === 2 ){
-        recommendation1 = arrRecommendations[0];
-        recommendation2 = arrRecommendations[1];
-        // Error msg for only 2 results
-    } else if (arrRecommendations.length === 3){
-        recommendation1 = arrRecommendations[0];
-        recommendation2 = arrRecommendations[1];
-        recommendation3 = arrRecommendations[2];
-        // Error msg for only 3 results
-    } 
-
-
-    // Using Jquery to put Graphs for First Recommendation on the Page
-
-    var $main = $('.cardContainer')
-
-    var $canvasBar1 = $('<canvas id="myBarChart1" class="col">');
-    var $canvasPie1 = $('<canvas id="myPieChart1" class="col">');
-    var $canvasLine1 = $('<canvas id="myLineChart1" class="col">');
-    var $divCanvas1 = $('<div class="row">');
-    var $divCardBody1 = $('<div class="row card-body d-flex justify-content-center">');
-    var $h3RecTitle1 = $('<h3 id="recTitle1">');
-    var $hr = $('<hr>');
-    var $divCardBody2 = $('<div class="row card-body d-flex justify-content-center">');
-    var $divCard1 = $('<div class="card m-1">');
-    var $divContainer1 = $('<div class="container-sm flex-sm-column col-lg-4">');
-
-    $h3RecTitle1.html(`<h3>Neighborhood One:</h3> <h4>Zipcode - ${threeRecommendations[0]}</h4>`);
-    
-    $divCanvas1.append($canvasBar1);
-    $divCanvas1.append($canvasPie1);
-    $divCanvas1.append($canvasLine1);
-    $divCardBody1.append($divCanvas1);
-    $divCardBody2.append($h3RecTitle1);
-    $divCardBody2.append($hr);
-    $divCard1.append($divCardBody2);
-    $divCard1.append($divCardBody1);
-    $divContainer1.append($divCard1);
-
-    $main.append($divContainer1);
-
-
-    // Using Jquery to put Graphs for Second Recommendation on the Page
-
-    var $canvasBar2 = $('<canvas id="myBarChart2" class="col">');
-    var $canvasPie2 = $('<canvas id="myPieChart2" class="col">');
-    var $canvasLine2 = $('<canvas id="myLineChart2" class="col">')
-    var $divCanvas2 = $('<div class="row">');
-    var $divCardBody3 = $('<div class="row card-body d-flex justify-content-center">');
-    var $h3RecTitle2 = $('<h3 id="recTitle2">');
-    var $hr = $('<hr>');
-    var $divCardBody4 = $('<div class="row card-body d-flex justify-content-center">');
-    var $divCard2 = $('<div class="card m-1">');
-    var $divContainer2 = $('<div class="container-sm flex-sm-column col-lg-4">');
-
-    $h3RecTitle2.html(`<h3>Neighborhood Two:</h3> <h4>Zipcode - ${threeRecommendations[1]}</h4>`);
-    
-    $divCanvas2.append($canvasBar2);
-    $divCanvas2.append($canvasPie2);
-    $divCanvas2.append($canvasLine2);
-    $divCardBody3.append($divCanvas2);
-    $divCardBody4.append($h3RecTitle2);
-    $divCardBody4.append($hr);
-    $divCard2.append($divCardBody4);
-    $divCard2.append($divCardBody3);
-    $divContainer2.append($divCard2);
-
-    $main.append($divContainer2);
-
-
-    // Using Jquery to put Graphs for Third Recommendation on the Page
-
-    var $canvasBar3 = $('<canvas id="myBarChart3" class="col">');
-    var $canvasPie3 = $('<canvas id="myPieChart3" class="col">');
-    var $canvasLine3 = $('<canvas id="myLineChart3" class="col">')
-    var $divCanvas3 = $('<div class="row">');
-    var $divCardBody5 = $('<div class="row card-body d-flex justify-content-center">');
-    var $h3RecTitle3 = $('<h3 id="recTitle3">');
-    var $hr = $('<hr>');
-    var $divCardBody6 = $('<div class="row card-body d-flex justify-content-center">');
-    var $divCard3 = $('<div class="card m-1">');
-    var $divContainer3 = $('<div class="container-sm flex-sm-column col-lg-4">');
-
-    $h3RecTitle3.html(`<h3>Neighborhood Three:</h3> <h4>Zipcode - ${threeRecommendations[2]}</h4>`);
-    
-    $divCanvas3.append($canvasBar3);
-    $divCanvas3.append($canvasPie3);
-    $divCanvas3.append($canvasLine3);
-    $divCardBody5.append($divCanvas3);
-    $divCardBody6.append($h3RecTitle3);
-    $divCardBody6.append($hr);
-    $divCard3.append($divCardBody6);
-    $divCard3.append($divCardBody5);
-    $divContainer3.append($divCard3);
-
-    $main.append($divContainer3);
-
-    // Get Average Age Data
-
-    var ageData = ((recommendation) => {
-        let ageDataArr = [];
-        for (let i = 0 ; i < recommendation[0].length ; i++){
-            if (i > 4){
-                ageDataArr.push(recommendation[0][i]);
-            }
         }
-        return ageDataArr
-    })
 
-    var ageDataRec1 = ageData(recommendation1);
-    var ageDataRec2 = ageData(recommendation2);
-    var ageDataRec3 = ageData(recommendation3);
+        let arrRecommendations = [];
+
+        for (let i = 0 ; i < censusURLs.length ; i++){
+
+            let urlFinalResponse = await censusURLs[i].json();
+            arrRecommendations.push(urlFinalResponse);
+        }
 
 
+        // Remove Index 0 of all internal arrays in arrRecommendations (index 0 = example of variables)
 
-    // Bar Graph for Average Age for Recommendation 1
+        for (let i = 0 ; i < arrRecommendations.length ; i++){
+            arrRecommendations[i].splice(0,1);
+        }
 
-    var ctx = document.getElementById('myBarChart1').getContext('2d');
-    var myBarChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['<5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
-            datasets: [{
-                label: "",
-                backgroundColor: '#e07a5f',
-                borderColor: '#e07a5f',
-                borderWidth: 2,
-                data: ageDataRec1,
-                hoverBackgroundColor: 'purple',
-            }]
-            
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Age Demographics'
-            },
-            scales: {
-                yAxes : [{
-                    ticks : {
-                        max : 10000,    
-                        min : 0
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Population'
-                    }
-                }],
-                xAxes : [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Age'
-                    }
-                }],
-                title: {
-                    display: true,
-                    text: 'Age Demographics'
+        // Retrieve data set for Age Bar Graphs
+
+        var ageData = ((recommendation) => {
+            let ageDataArr = [];
+            for (let i = 0 ; i < recommendation[0].length ; i++){
+                if (i > 4){
+                    ageDataArr.push(recommendation[0][i]);
                 }
             }
-        }
-    });
+            return ageDataArr
+        })
 
-    // Bar Graph for Average Age for Recommendation 2
+        // Retrieve data set for Housing Dougnut Graphs
 
-    var ctx = document.getElementById('myBarChart2').getContext('2d');
-    var myBarChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['<5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
-            datasets: [{
-                label: "",
-                backgroundColor: '#e07a5f',
-                borderColor: '#e07a5f',
-                borderWidth: 2,
-                data: ageDataRec2,
-                hoverBackgroundColor: 'purple',
-            }]
-            
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Age Demographics'
-            },
-            scales: {
-                yAxes : [{
-                    ticks : {
-                        max : 10000,    
-                        min : 0
+        var housingData = ((recommendation) => {
+            let housingDataArr = [];
+            for (let i = 0 ; i < recommendation[0].length ; i++){
+                if (i > 1 && i < 5){
+                    housingDataArr.push(recommendation[0][i]);
+                }
+            }
+            return housingDataArr
+        })
+
+        // Retrieve data set for Income Line Graphs
+
+        var incomeData = ((recommendation) => {
+            let incomeDataArr = [];
+            for (let i = 0 ; i < recommendation[0].length ; i++){
+                if (i > 17){
+                    incomeDataArr.push(recommendation[0][i]);
+                }
+            }
+            return incomeDataArr
+        })
+
+        // Making the graphs and appending them to the HTML
+
+        var $main = $('.cardContainer')
+    
+        for(let i = 0; i < arrRecommendations.length; i++) {
+            var recommendation = arrRecommendations[i];
+            var id = i + 1;
+            var integersToWordsArray = ["One", "Two", "Three"]
+        
+            var $canvasBar = $(`<canvas id="myBarChart${id}" class="col">`);
+            var $canvasPie = $(`<canvas id="myPieChart${id}" class="col">`);
+            var $canvasLine = $(`<canvas id="myLineChart${id}" class="col">`);
+            var $divCanvas = $('<div class="row">');
+            var $divCardBody1 = $('<div class="row card-body d-flex justify-content-center">');
+            var $h3RecTitle = $('<h3 id="recTitle1">');
+            var $hr = $('<hr>');
+            var $divCardBody2 = $('<div class="row card-body d-flex justify-content-center">');
+            var $divCard = $('<div class="card m-1">');
+            var $divContainer = $('<div class="container-sm flex-sm-column col-lg-4">');
+
+            $h3RecTitle.html(`<h3>Neighborhood ${integersToWordsArray[i]}:</h3> <h4>Zipcode - ${threeRecommendations[i]}</h4>`);
+        
+            $divCanvas.append($canvasBar);
+            $divCanvas.append($canvasPie);
+            $divCanvas.append($canvasLine);
+            $divCardBody1.append($divCanvas);
+            $divCardBody2.append($h3RecTitle);
+            $divCardBody2.append($hr);
+            $divCard.append($divCardBody2);
+            $divCard.append($divCardBody1);
+            $divContainer.append($divCard);
+
+            $main.append($divContainer);
+
+            var ageDataRec = ageData(recommendation);
+
+            var ctx = document.getElementById(`myBarChart${id}`).getContext('2d');
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['<5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
+                    datasets: [{
+                        label: "",
+                        backgroundColor: '#e07a5f',
+                        borderColor: '#e07a5f',
+                        borderWidth: 2,
+                        data: ageDataRec,
+                        hoverBackgroundColor: 'purple',
+                    }]
+                    
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Age Demographics'
                     },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Population'
+                    scales: {
+                        yAxes : [{
+                            ticks : {
+                                max : 10000,    
+                                min : 0
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Population'
+                            }
+                        }],
+                        xAxes : [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Age'
+                            }
+                        }],
+                        title: {
+                            display: true,
+                            text: 'Age Demographics'
+                        }
                     }
-                }],
-                xAxes : [{
-                    scaleLabel: {
+                }
+            });
+
+            var housingDataRec = housingData(recommendation);
+
+            var ctx = document.getElementById(`myPieChart${id}`).getContext('2d');
+            var myPieChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Owned', 'Rented', 'Vacant'],
+                    datasets: [{
+                        backgroundColor: ['#81b29a', '#f2cc8f', '#3d405b'],
+                        borderColor: 'white',
+                        borderWidth: 2,
+                        data: housingDataRec,
+                        hoverBackgroundColor: 'purple',
+                    }]
+                
+                },
+                options: {
+                    title: {
                         display: true,
-                        labelString: 'Age'
-                    }
-                }]
-            }
-        }
-    });
-
-    // Bar Graph for Average Age for Recommendation 3
-
-    var ctx = document.getElementById('myBarChart3').getContext('2d');
-    var myBarChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['<5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'],
-            datasets: [{
-                label: "",
-                backgroundColor: '#e07a5f',
-                borderColor: '#e07a5f',
-                borderWidth: 2,
-                data: ageDataRec3,
-                hoverBackgroundColor: 'purple',
-            }]
-            
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Age Demographics'
-            },
-            scales: {
-                yAxes : [{
-                    ticks : {
-                        max : 10000,    
-                        min : 0
+                        text: 'Housing Inventory'
                     },
-                    scaleLabel: {
+                    cutoutPercentage: 50,
+                }
+            });
+
+            var incomeDataRec = incomeData(recommendation);
+
+            var ctx = document.getElementById(`myLineChart${id}`).getContext('2d');
+            var myPieChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['<$10K', '$10K - $14K', '$15K - $24K', '$25K - $34K', '$35K - $49K', '$50K - $74K', '$75K - $99K', '$100K - $149K', '$150K - $199K', '>$200K'],
+                    datasets: [{
+                        pointBackgroundColor: 'purple',
+                        borderColor: '#3d405b',
+                        borderWidth: 2,
+                        data: incomeDataRec,
+                        hoverBackgroundColor: 'orange',
+                    }]
+                    
+                },
+                options: {
+                    title: {
                         display: true,
-                        labelString: 'Population'
-                    }
-                }],
-                xAxes : [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Age'
-                    }
-                }]
-            }
-        }
-    });
-
-    // Get Housing Occupany Data for Recommendations
-
-    var housingData = ((recommendation) => {
-        let housingDataArr = [];
-        for (let i = 0 ; i < recommendation[0].length ; i++){
-            if (i > 1 && i < 5){
-                housingDataArr.push(recommendation[0][i]);
-            }
-        }
-        return housingDataArr
-    })
-
-    var housingDataRec1 = housingData(recommendation1);
-    var housingDataRec2 = housingData(recommendation2);
-    var housingDataRec3 = housingData(recommendation3);
-
-    // Pie Graph for Housing for Recommendation 1
-
-    var ctx = document.getElementById('myPieChart1').getContext('2d');
-    var myPieChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Owned', 'Rented', 'Vacant'],
-            datasets: [{
-                backgroundColor: ['#81b29a', '#f2cc8f', '#3d405b'],
-                borderColor: 'white',
-                borderWidth: 2,
-                data: housingDataRec1,
-                hoverBackgroundColor: 'purple',
-            }]
-            
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Housing Inventory'
-            },
-            cutoutPercentage: 50,
-        }
-    });
-
-
-    // Pie Graph for Housing for Recommendation 2
-
-    var ctx = document.getElementById('myPieChart2').getContext('2d');
-    var myPieChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Owned', 'Rented', 'Vacant'],
-            datasets: [{
-                backgroundColor: ['#81b29a', '#f2cc8f', '#3d405b'],
-                borderColor: 'white',
-                borderWidth: 2,
-                data: housingDataRec2,
-                hoverBackgroundColor: 'purple',
-            }]
-            
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Housing Inventory'
-            },
-            cutoutPercentage: 50,
-        }
-    });
-
-
-    // Pie Graph for Housing for Recommendation 3
-
-    var ctx = document.getElementById('myPieChart3').getContext('2d');
-    var myPieChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Owned', 'Rented', 'Vacant'],
-            datasets: [{
-                backgroundColor: ['#81b29a', '#f2cc8f', '#3d405b'],
-                borderColor: 'white',
-                borderWidth: 2,
-                data: housingDataRec3,
-                hoverBackgroundColor: 'purple',
-            }]
-            
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Housing Inventory'
-            },
-            cutoutPercentage: 50,
-        }
-    });
-
-    // Get Income Data for Recommendations
-
-    var incomeData = ((recommendation) => {
-        let incomeDataArr = [];
-        for (let i = 0 ; i < recommendation[0].length ; i++){
-            if (i > 17){
-                incomeDataArr.push(recommendation[0][i]);
-            }
-        }
-        return incomeDataArr
-    })
-
-    var incomeDataRec1 = incomeData(recommendation1);
-    var incomeDataRec2 = incomeData(recommendation2);
-    var incomeDataRec3 = incomeData(recommendation3);
-
-    // Line Graph of Income for Recommendation 1
-
-    var ctx = document.getElementById('myLineChart1').getContext('2d');
-    var myPieChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['<$10K', '$10K - $14K', '$15K - $24K', '$25K - $34K', '$35K - $49K', '$50K - $74K', '$75K - $99K', '$100K - $149K', '$150K - $199K', '>$200K'],
-            datasets: [{
-                pointBackgroundColor: 'purple',
-                borderColor: '#3d405b',
-                borderWidth: 2,
-                data: incomeDataRec1,
-                hoverBackgroundColor: 'orange',
-            }]
-            
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Income By Household'
-            },
-            scales: {
-                yAxes : [{
-                    ticks : {
-                        max : 3000,    
-                        min : 0
+                        text: 'Income By Household'
                     },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Number of Households'
+                    scales: {
+                        yAxes : [{
+                            ticks : {
+                                max : 3000,    
+                                min : 0
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Number of Households'
+                            }
+                        }],
+                        xAxes : [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Annual Income'
+                            }
+                        }]
                     }
-                }],
-                xAxes : [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Annual Income'
-                    }
-                }]
-            }
-        }
-    });
-
-    // Line Graph of Income for Recommendation 2
-
-    var ctx = document.getElementById('myLineChart2').getContext('2d');
-    var myPieChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['<$10K', '$10K - $14K', '$15K - $24K', '$25K - $34K', '$35K - $49K', '$50K - $74K', '$75K - $99K', '$100K - $149K', '$150K - $199K', '>$200K'],
-            datasets: [{
-                pointBackgroundColor: 'purple',
-                borderColor: '#3d405b',
-                borderWidth: 2,
-                data: incomeDataRec1,
-                hoverBackgroundColor: 'orange',
-            }]
-            
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Income By Household'
-            },
-            scales: {
-                yAxes : [{
-                    ticks : {
-                        max : 3000,    
-                        min : 0
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Number of Households'
-                    }
-                }],
-                xAxes : [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Annual Income'
-                    }
-                }]
-            }
-        }
-    });
-    // Line Graph of Income for Recommendation 3
-
-    var ctx = document.getElementById('myLineChart3').getContext('2d');
-    var myPieChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['<$10K', '$10K - $14K', '$15K - $24K', '$25K - $34K', '$35K - $49K', '$50K - $74K', '$75K - $99K', '$100K - $149K', '$150K - $199K', '>$200K'],
-            datasets: [{
-                pointBackgroundColor: 'purple',
-                borderColor: '#3d405b',
-                borderWidth: 2,
-                data: incomeDataRec1,
-                hoverBackgroundColor: 'orange',
-            }]
-            
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Income By Household'
-            },
-            scales: {
-                yAxes : [{
-                    ticks : {
-                        max : 3000,    
-                        min : 0
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Number of Households'
-                    }
-                }],
-                xAxes : [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Annual Income'
-                    }
-                }]
-            }
-        }
-    });
-
-
-
-
-
+                }
+            });
+        } 
+    }
 
 })
-
-
-
-// {/* <div class="container1 col-md-6 offset-md-3 my-5">
-//             <div class="card">
-//                 <div class="row card-body d-flex justify-content-center">
-//                     <h3 id="recTitle1">Recommendation 1</h3>
-//                     <hr>
-//                 </div>
-//                 <div class="row card-body d-flex justify-content-center">
-//                     <p id="barTitle">Age Demographics</p>
-//                     <div class="row">
-//                         <canvas id="myBarChart1" class="col"></canvas>
-//                         <canvas id="myPieChart1" class="col"></canvas>
-//                     </div>
-//                 </div>
-
-//             </div>
-
-//       </div>
-//       <div class="col-md-6 offset-md-3 my-5">
-//             <div class="card">
-//                 <div class="row card-body d-flex justify-content-center">
-//                     <h3>Recommendation 2</h3>
-//                     <hr>
-//                 </div>
-//                 <div class="row card-body d-flex justify-content-center">
-//                     <p>Age Demographics</p>
-//                     <canvas id="myBarChart2" class="col"></canvas>
-//                     <canvas id="myPieChart2" class="col"></canvas>
-//                 </div>
-
-//             </div>
-
-//       </div>
-//       <div class="col-md-6 offset-md-3 my-5">
-//             <div class="card">
-//                 <div class="row card-body d-flex justify-content-center">
-//                     <h3>Recommendation 3</h3>
-//                     <hr>
-//                 </div>
-//                 <div class="row card-body d-flex justify-content-center">
-//                     <p>Age Demographics</p>
-//                     <canvas id="myBarChart3" class="col"></canvas>
-//                     <canvas id="myPieChart3" class="col"></canvas>
-//                 </div>
-
-//             </div>
-
-//       </div> */}
