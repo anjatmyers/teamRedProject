@@ -15,7 +15,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 signInButton.onclick = () => auth.signInWithPopup(provider);
 
-// signOutButton.onclick = () => auth.signOut();
+
 
 auth.onAuthStateChanged(user => {
     if (user) {
@@ -31,12 +31,8 @@ auth.onAuthStateChanged(user => {
 
     } else {
         // not signed in.  Prompt log-in.
-        whenSignedIn.hidden = true;
-        whenSignedOut.hidden = true;
-        signInButton.hidden = false;
-        // signOutButton.hidden = true;
-        signUpButton.hidden = false;
-        userDetails.innerHTML = '';
+       auth.signOut();
+       
     }
 });
 
