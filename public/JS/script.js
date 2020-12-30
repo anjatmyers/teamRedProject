@@ -19,7 +19,7 @@ var docRef = db.collection("profileData").doc(currentUserObj.lastName);
 
 $(async() => {
 
-    var zipCodesITP = [
+    var zipCodesATL = [
         {zipCode: 30339, averagePrice: 0}, 
         {zipCode: 30327, averagePrice: 0}, 
         {zipCode: 30342, averagePrice: 0}, 
@@ -52,10 +52,7 @@ $(async() => {
         {zipCode: 30313, averagePrice: 0}, 
         {zipCode: 30303, averagePrice: 0}, 
         {zipCode: 30314, averagePrice: 0}, 
-        {zipCode: 30312, averagePrice: 0}
-    ]
-
-    var zipCodesOTP = [
+        {zipCode: 30312, averagePrice: 0},
         {zipCode: 30301, averagePrice: 0}, 
         {zipCode: 30302, averagePrice: 0}, 
         {zipCode: 30304, averagePrice: 0}, 
@@ -133,28 +130,7 @@ $(async() => {
     if (doc) {
         const userInfo = await doc.data(currentUserObj.lastName);
         userIncome = userInfo.income;
-        if (userInfo.preference == "on"){
-            userPreference = "Downtown Atlanta";
-            userZipArr = zipCodesITP;
-        } else {
-            userPreference = "Atlanta Suburbs";
-            userZipArr = zipCodesOTP;
-        }
-    }
-
-
-    // Inside or Outside Atlanta
-
-    let zipArr;
-
-    var inOrOutATL = ((locationPreference) => {
-        if (locationPreference === "Downtown Atlanta"){
-            zipArr = zipCodesITP;
-        } else if (locationPreference === "Atlanta Suburbs"){
-            zipArr = zipCodesOTP;
-        }
-        return zipArr
-    })
+ 
 
     // Find Budget Amount
 
@@ -215,6 +191,7 @@ $(async() => {
     })
 
 
+
     // Shortening Recommendations Down to Three
 
     var sortedRecommendations = (arrRec) => {
@@ -255,15 +232,15 @@ $(async() => {
     const responseRealtor = await fetch(settings.url, settings.data); // raw Response
     const finalResponse = await responseRealtor.json(); // Json reponse / formatted response 
     
-    const averageHomePrice = avgHomePrice(finalResponse, userZipArr);
+    const averageHomePrice = avgHomePrice(finalResponse, zipCodesATL);
 
-    // console.log(userIncome);
 
     var budgetOfPerson = budget(userIncome); //change when we recieve data from user
 
-    var userZipCode = inOrOutATL(userPreference);
 
-    var recommendations = recommendNeighborhood(userZipCode, budgetOfPerson);
+    var recommendations = recommendNeighborhood(zipCodesATL, budgetOfPerson);
+    console.log(zipCodesATL);
+    console.log(recommendations);
 
     if (recommendations.length < 1){
 
@@ -474,7 +451,7 @@ $(async() => {
                     scales: {
                         yAxes : [{
                             ticks : {
-                                max : 3000,    
+                                max : 4000,    
                                 min : 0
                             },
                             scaleLabel: {
