@@ -1,12 +1,12 @@
 
 
 db.collection('profileData');
-const whenSignedIn = document.getElementById('whenSignedIn');
-const whenSignedOut = document.getElementById('whenSignedOut');
-const signOutButton = document.getElementById('signOutButton');
-const userDetails = document.getElementById('userDetails');
-const profileForm = document.getElementById('profileForm');
-const submitButton = document.getElementById('submitButton');
+// const whenSignedIn = document.getElementById('whenSignedIn');
+// const whenSignedOut = document.getElementById('whenSignedOut');
+// const signOutButton = document.getElementById('signOutButton');
+// const userDetails = document.getElementById('userDetails');
+// const profileForm = document.getElementById('profileForm');
+// const submitButton = document.getElementById('submitButton');
 signOutButton.onclick = () => auth.signOut();
 
 
