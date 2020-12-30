@@ -1,14 +1,15 @@
 
 
 
-const auth = firebase.auth();
+// const auth = firebase.auth();
 db.collection('profileData');
-const whenSignedIn = document.getElementById('whenSignedIn');
-const whenSignedOut = document.getElementById('whenSignedOut');
+// const whenSignedIn = document.getElementById('whenSignedIn');
+// const whenSignedOut = document.getElementById('whenSignedOut');
 const signOutButton = document.getElementById('signOutButton');
-const userDetails = document.getElementById('userDetails');
+// const userDetails = document.getElementById('userDetails');
 const profileForm = document.getElementById('profileForm');
 const submitButton = document.getElementById('submitButton');
+
 signOutButton.onclick = () => auth.signOut();
 
 
@@ -23,19 +24,19 @@ console.log(JSON.parse(currentUser));
 
 var docRef = db.collection("profileData").doc(currentUserObj.lastName);
 
-docRef.get().then(function(doc) {
-    if (doc.exists) {
-        console.log("User Profile:", doc.data());
-        var userInfo = doc.data();
-        var userIncome = userInfo.income;
-        console.log(userIncome);
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("Profile does not exist!");
-    }
-}).catch(function(error) {
-    console.log("ERROR:", error);
-});
+// docRef.get().then(function(doc) {
+//     if (doc.exists) {
+//         console.log("User Profile:", doc.data());
+//         var userInfo = doc.data();
+//         var userIncome = userInfo.income;
+//         console.log(userIncome);
+//     } else {
+//         // doc.data() will be undefined in this case
+//         console.log("Profile does not exist!");
+//     }
+// }).catch(function(error) {
+//     console.log("ERROR:", error);
+// });
 
 
 
@@ -149,7 +150,7 @@ $(async() => {
 
     // Grabbing User Data from Firebase
 
-    var docRef = db.collection("profileData").doc("Snitker");
+    // var docRef = db.collection("profileData").doc("Snitker");
 
     // async function getProfileData() {
     //     try {
@@ -168,10 +169,10 @@ $(async() => {
     const doc = await docRef.get();
     let userPreference;
     let userZipArr;
-    let userIncome;
+     let userIncome;
 
     if (doc) {
-        const userInfo = await doc.data();
+        const userInfo = await doc.data(currentUserObj.lastName);
         userIncome = userInfo.income;
         if (userInfo.preference == "on"){
             userPreference = "Downtown Atlanta";
