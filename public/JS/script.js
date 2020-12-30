@@ -1,7 +1,4 @@
 
-const {apiKey} = require("./config.js")
-console.log(apiKey);
-
 
 const auth = firebase.auth();
 db.collection('profileData');
@@ -25,21 +22,20 @@ console.log(JSON.parse(currentUser));
 
 var docRef = db.collection("profileData").doc(currentUserObj.lastName);
 
-docRef.get().then(function(doc) {
-    if (doc.exists) {
-        console.log("User Profile:", doc.data());
-        var userInfo = doc.data();
-        var userIncome = userInfo.income;
-        console.log(userIncome);
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("Profile does not exist!");
-    }
-}).catch(function(error) {
-    console.log("ERROR:", error);
-});
+// docRef.get().then(function(doc) {
+//     if (doc.exists) {
+//         console.log("User Profile:", doc.data());
+//         var userInfo = doc.data();
+//         var userIncome = userInfo.income;
+//         console.log(userIncome);
+//     } else {
+//         // doc.data() will be undefined in this case
+//         console.log("Profile does not exist!");
+//     }
+// }).catch(function(error) {
+//     console.log("ERROR:", error);
+// });
 
-console.log(userIncome);
 
 
 
@@ -151,7 +147,7 @@ $(async() => {
 
     // Grabbing User Data from Firebase
 
-    var docRef = db.collection("profileData").doc("Snitker");
+    // var docRef = db.collection("profileData").doc("Snitker");
 
     // async function getProfileData() {
     //     try {
@@ -173,7 +169,7 @@ $(async() => {
     let userIncome;
 
     if (doc) {
-        const userInfo = await doc.data();
+        const userInfo = await doc.data(currentUserObj.lastName);
         userIncome = userInfo.income;
         if (userInfo.preference == "on"){
             userPreference = "Downtown Atlanta";
