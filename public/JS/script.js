@@ -1,7 +1,5 @@
 
-
 // const auth = firebase.auth();
-
 
 db.collection('profileData');
 // const whenSignedIn = document.getElementById('whenSignedIn');
@@ -125,6 +123,7 @@ $(async() => {
     ]
 
     // Grabbing User Data from Firebase
+
 
     const doc = await docRef.get();
     let userPreference;
