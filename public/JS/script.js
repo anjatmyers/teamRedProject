@@ -364,7 +364,7 @@ $(async() => {
             var $divCard = $('<div class="card m-1">');
             var $divContainer = $('<div class="container-sm flex-sm-column col-lg-4">');
 
-            $h3RecTitle.html(`<h3>Neighborhood ${integersToWordsArray[i]}:</h3> <h4>Zipcode - ${threeRecommendations[i]}</h4>`);
+            $h3RecTitle.html(`<h3 class="navyFont">Neighborhood ${integersToWordsArray[i]}:</h3> <h4 class="navyFont">Zipcode - ${threeRecommendations[i]}</h4>`);
         
             $divCanvas.append($canvasBar);
             $divCanvas.append($canvasPie);
@@ -391,7 +391,7 @@ $(async() => {
                         borderColor: '#e07a5f',
                         borderWidth: 2,
                         data: ageDataRec,
-                        hoverBackgroundColor: 'purple',
+                        hoverBackgroundColor: '#f4f1de',
                     }]
                     
                 },
@@ -437,7 +437,7 @@ $(async() => {
                         borderColor: 'white',
                         borderWidth: 2,
                         data: housingDataRec,
-                        hoverBackgroundColor: 'purple',
+                        hoverBackgroundColor: '#f4f1de',
                     }]
                 
                 },
@@ -458,11 +458,11 @@ $(async() => {
                 data: {
                     labels: ['<$10K', '$10K - $14K', '$15K - $24K', '$25K - $34K', '$35K - $49K', '$50K - $74K', '$75K - $99K', '$100K - $149K', '$150K - $199K', '>$200K'],
                     datasets: [{
-                        pointBackgroundColor: 'purple',
+                        pointBackgroundColor: '#f4f1de',
                         borderColor: '#3d405b',
                         borderWidth: 2,
                         data: incomeDataRec,
-                        hoverBackgroundColor: 'orange',
+                        hoverBackgroundColor: '#e07a5f',
                     }]
                     
                 },
