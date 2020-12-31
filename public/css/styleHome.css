@@ -96,10 +96,43 @@ body{
 .tanFont {
     color: #f4f1de;
 }
+.yellowFont {
+    color: #f2cc8f;
+}
 
 footer {
     width: 100%;
     border-top: #3d405b solid;
     height: 75px;
     margin-top: 25px;
+}
+
+.card2 {
+    width: 350px;
+    background-color: #81b29a;
+    color: #f4f1de;
+    margin: 15px;
+}
+.card3 {
+    width: 350px;
+    background-color:#e07a5f;
+    color: #f4f1de;
+    margin: 15px;
+}
+.card4 {
+    width: 350px;
+    background-color:#3d405b;
+    color: #f4f1de;
+    margin: 15px;
+}
+.card5 {
+    width: 350px;
+    background-color:#f2cc8f;
+    color: #3d405b;
+    margin: 15px;
+}
+
+
+a:hover {
+    text-decoration: none;
 }
