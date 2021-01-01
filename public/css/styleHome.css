@@ -8,26 +8,33 @@
 
 
 body{
+    width: 100%;
+    height: 100%;
     margin: 0px;
-    width: 100vw;
-    height: 100vh;
     background-color: #f4f1de;
 }
+.bodyHome{
+    background-color: #81b29a;
+}
  .container-fluid {
-     background-color: #f4f1de;
+     background-color: #81b29a;
      width: auto;
      height: auto;
      margin: 0px;
  }
 
  .cardContainer {
-     background-color: #f4f1de;
+     background-color:#81b29a;
      width: 100vw;
      height: auto;
      margin: 0px;
      display: flex;
      flex-wrap: wrap;
 
+ }
+
+ .card{
+     background-color: #f4f1de;
  }
  .profile {
      background-color: #f4f1de;
@@ -82,4 +89,50 @@ body{
 
 .name {
     font-family: 'Handlee', cursive;
+}
+.navyFont {
+    color: #3d405b;
+}
+.tanFont {
+    color: #f4f1de;
+}
+.yellowFont {
+    color: #f2cc8f;
+}
+
+footer {
+    width: 100%;
+    border-top: #3d405b solid;
+    height: 75px;
+    margin-top: 25px;
+}
+
+.card2 {
+    width: 350px;
+    background-color: #81b29a;
+    color: #f4f1de;
+    margin: 15px;
+}
+.card3 {
+    width: 350px;
+    background-color:#e07a5f;
+    color: #f4f1de;
+    margin: 15px;
+}
+.card4 {
+    width: 350px;
+    background-color:#3d405b;
+    color: #f4f1de;
+    margin: 15px;
+}
+.card5 {
+    width: 350px;
+    background-color:#f2cc8f;
+    color: #3d405b;
+    margin: 15px;
+}
+
+
+a:hover {
+    text-decoration: none;
 }

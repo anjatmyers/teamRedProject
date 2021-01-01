@@ -29,7 +29,7 @@
 
 </head>
 
-<body>
+<body class="bodyHome">
 
 
 
@@ -69,13 +69,13 @@
       <!-- end of spacer div -->
 
       <nav class="navbar navbar-light d-none d-lg-block d-flex ml-auto w-100">
-        <a class="navbar-brand p-2 mx-5" href="#"></a>
-        <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 26px;" href="home.html">Home</a>
-        <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 26px;" href="profile.html">Profile</a>
-        <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 26px;" href="resources.html">Resources</a>
-        <a class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 26px;" href="aboutus.html">About Us</a>
-        <a id="signOutButton" class="navbar-brand p-2 mx-5" style="color: #f4f1de; font-size: 20px;" href="index.html">Sign Out</a>
-      </nav>
+        <a class="navbar-brand p-xl-2 mx-xl-4 mx-2" href="#"></a>
+        <a class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 26px;" href="home.html">Home</a>
+        <a class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 26px;" href="profile.html">Profile</a>
+        <a class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 26px;" href="resources.html">Resources</a>
+        <a class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 26px;" href="aboutus.html">About Us</a>
+        <a id="signOutButton" class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 20px;" href="index.html">Sign Out</a>
+    </nav>
   </div> 
   <!-- end of navbar container -->
 </header>
@@ -87,8 +87,11 @@
 
 
 <main class="recommendations d-flex flex-column justify-content-center">
-  <div id="userDetails" class="h4 my-3">Welcome back!</div>
-  <div class="results h4 my-3" id="recommendationsMsg">Here are three neighborhoods that match your profile information.</div>
+
+  <div id="userDetails" class="h3 my-3 d-flex justify-content-center">Welcome back!</div>
+  <div class="results h4 my-3 d-flex justify-content-center tanFont" id="recommendationsMsg">Here are three neighborhoods that match your profile information.</div>
+  <div class="results h5 my-3 d-flex justify-content-center yellowFont" id="recommendationsMsg">Visit the resources page to explore your neighborhood selections.</div>
+    
   <div class="cardContainer"></div>
   <!-- d-flex flex-lg-row flex-sm-column -->
 
@@ -114,7 +117,13 @@
   </div>
 </div>
 
-<footer></footer>
+<footer>
+  <div class="container d-flex justify-content-center">
+  <h6 class="navyFont">© 2020 Neighborhood Swatch Inc. All rights reserved.</h6>
+</div>
+</footer>
+
+
 
 
 
