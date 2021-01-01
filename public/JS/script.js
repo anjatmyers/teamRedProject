@@ -1,3 +1,7 @@
+// $(window).on('load', function(){
+//     $('loader-box').fadeOut('slow');
+// });
+
 
 // const auth = firebase.auth();
 
@@ -125,11 +129,12 @@ $(async() => {
     const doc = await docRef.get();
     let userPreference;
     let userZipArr;
-     let userIncome;
+    let userIncome;
 
     if (doc) {
         const userInfo = await doc.data(currentUserObj.lastName);
         userIncome = userInfo.income;
+    }
  
 
     // Find Budget Amount
@@ -440,6 +445,7 @@ $(async() => {
                         borderWidth: 2,
                         data: incomeDataRec,
                         hoverBackgroundColor: 'orange',
+                        label: "",
                     }]
                     
                 },
