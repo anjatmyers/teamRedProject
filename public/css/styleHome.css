@@ -58,6 +58,16 @@ body{
      height: 250px;
  }
 
+ .homeImageLg {
+     width: 1000px;
+ }
+ .homeImageMd {
+     width: 700px;
+ }
+ .homeImageSm {
+    width: 500px;
+ }
+
  .dropdown-menu {
      background-color: #81b29a;
  }
