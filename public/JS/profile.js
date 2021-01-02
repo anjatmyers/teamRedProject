@@ -47,8 +47,9 @@ docRef.get().then(function(doc) {
     .catch(function(error) {
         console.error("Error building profile: ", error);
     });
-    window.location.href="home.html"
 })
+
+
 
 
 
