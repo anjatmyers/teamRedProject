@@ -47,7 +47,14 @@ docRef.get().then(function(doc) {
     .catch(function(error) {
         console.error("Error building profile: ", error);
     });
-    // window.location.href="home.html"
+
+    let $modal = $('#submittedPopUp');
+        $modal.modal('show');
+        let $homeButton = $('#homeButton');
+        $homeButton.click(function(){
+            window.location = "home.html";
+        })
+
 })
 
 
