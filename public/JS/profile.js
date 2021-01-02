@@ -3,7 +3,7 @@
 db.collection('profileData');
 // const whenSignedIn = document.getElementById('whenSignedIn');
 // const whenSignedOut = document.getElementById('whenSignedOut');
-// const signOutButton = document.getElementById('signOutButton');
+const signOutButton = document.getElementById('signOutButton');
 // const userDetails = document.getElementById('userDetails');
 // const profileForm = document.getElementById('profileForm');
 // const submitButton = document.getElementById('submitButton');
@@ -47,6 +47,7 @@ docRef.get().then(function(doc) {
     .catch(function(error) {
         console.error("Error building profile: ", error);
     });
+    window.location.href="home.html"
 })
 
 
