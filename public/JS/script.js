@@ -24,103 +24,103 @@ var docRef = db.collection("profileData").doc(currentUserObj.lastName);
 $(async() => {
 
     var zipCodesATL = [
-        {zipCode: 30339, averagePrice: 0}, 
-        {zipCode: 30327, averagePrice: 0}, 
-        {zipCode: 30342, averagePrice: 0}, 
-        {zipCode: 30319, averagePrice: 0}, 
-        {zipCode: 30341, averagePrice: 0}, 
-        {zipCode: 30345, averagePrice: 0}, 
-        {zipCode: 30033, averagePrice: 0}, 
-        {zipCode: 30329, averagePrice: 0}, 
-        {zipCode: 30324, averagePrice: 0}, 
-        {zipCode: 30326, averagePrice: 0}, 
-        {zipCode: 30305, averagePrice: 0}, 
-        {zipCode: 30318, averagePrice: 0}, 
-        {zipCode: 30363, averagePrice: 0}, 
-        {zipCode: 30309, averagePrice: 0}, 
-        {zipCode: 30306, averagePrice: 0}, 
-        {zipCode: 30307, averagePrice: 0}, 
-        {zipCode: 30030, averagePrice: 0}, 
-        {zipCode: 30079, averagePrice: 0}, 
-        {zipCode: 30002, averagePrice: 0}, 
-        {zipCode: 30032, averagePrice: 0}, 
-        {zipCode: 30317, averagePrice: 0}, 
-        {zipCode: 30316, averagePrice: 0}, 
-        {zipCode: 30315, averagePrice: 0}, 
-        {zipCode: 30354, averagePrice: 0}, 
-        {zipCode: 30337, averagePrice: 0}, 
-        {zipCode: 30344, averagePrice: 0}, 
-        {zipCode: 30310, averagePrice: 0}, 
-        {zipCode: 30311, averagePrice: 0}, 
-        {zipCode: 30308, averagePrice: 0}, 
-        {zipCode: 30313, averagePrice: 0}, 
-        {zipCode: 30303, averagePrice: 0}, 
-        {zipCode: 30314, averagePrice: 0}, 
-        {zipCode: 30312, averagePrice: 0},
-        {zipCode: 30301, averagePrice: 0}, 
-        {zipCode: 30302, averagePrice: 0}, 
-        {zipCode: 30304, averagePrice: 0}, 
-        {zipCode: 30322, averagePrice: 0}, 
-        {zipCode: 30328, averagePrice: 0}, 
-        {zipCode: 30330, averagePrice: 0}, 
-        {zipCode: 30331, averagePrice: 0}, 
-        {zipCode: 30334, averagePrice: 0}, 
-        {zipCode: 30336, averagePrice: 0}, 
-        {zipCode: 30320, averagePrice: 0}, 
-        {zipCode: 30321, averagePrice: 0}, 
-        {zipCode: 30325, averagePrice: 0}, 
-        {zipCode: 30332, averagePrice: 0}, 
-        {zipCode: 30333, averagePrice: 0}, 
-        {zipCode: 30338, averagePrice: 0}, 
-        {zipCode: 30340, averagePrice: 0}, 
-        {zipCode: 30343, averagePrice: 0}, 
-        {zipCode: 30346, averagePrice: 0}, 
-        {zipCode: 30348, averagePrice: 0}, 
-        {zipCode: 30353, averagePrice: 0}, 
-        {zipCode: 30357, averagePrice: 0}, 
-        {zipCode: 30360, averagePrice: 0}, 
-        {zipCode: 30361, averagePrice: 0}, 
-        {zipCode: 30362, averagePrice: 0}, 
-        {zipCode: 30349, averagePrice: 0}, 
-        {zipCode: 30350, averagePrice: 0}, 
-        {zipCode: 30355, averagePrice: 0}, 
-        {zipCode: 30356, averagePrice: 0}, 
-        {zipCode: 30358, averagePrice: 0}, 
-        {zipCode: 30359, averagePrice: 0}, 
-        {zipCode: 30364, averagePrice: 0}, 
-        {zipCode: 30369, averagePrice: 0}, 
-        {zipCode: 30370, averagePrice: 0}, 
-        {zipCode: 30375, averagePrice: 0}, 
-        {zipCode: 30377, averagePrice: 0}, 
-        {zipCode: 30384, averagePrice: 0}, 
-        {zipCode: 30385, averagePrice: 0}, 
-        {zipCode: 30394, averagePrice: 0}, 
-        {zipCode: 30396, averagePrice: 0}, 
-        {zipCode: 30366, averagePrice: 0}, 
-        {zipCode: 30368, averagePrice: 0}, 
-        {zipCode: 30371, averagePrice: 0}, 
-        {zipCode: 30378, averagePrice: 0}, 
-        {zipCode: 30380, averagePrice: 0}, 
-        {zipCode: 30388, averagePrice: 0}, 
-        {zipCode: 30392, averagePrice: 0}, 
-        {zipCode: 30398, averagePrice: 0}, 
-        {zipCode: 31106, averagePrice: 0}, 
-        {zipCode: 31107, averagePrice: 0}, 
-        {zipCode: 31131, averagePrice: 0}, 
-        {zipCode: 31136, averagePrice: 0}, 
-        {zipCode: 31119, averagePrice: 0}, 
-        {zipCode: 31126, averagePrice: 0}, 
-        {zipCode: 31139, averagePrice: 0}, 
-        {zipCode: 31141, averagePrice: 0}, 
-        {zipCode: 31146, averagePrice: 0}, 
-        {zipCode: 31192, averagePrice: 0}, 
-        {zipCode: 31196, averagePrice: 0}, 
-        {zipCode: 31145, averagePrice: 0}, 
-        {zipCode: 31150, averagePrice: 0}, 
-        {zipCode: 31156, averagePrice: 0}, 
-        {zipCode: 31193, averagePrice: 0}, 
-        {zipCode: 31195, averagePrice: 0}, 
-        {zipCode: 39901, averagePrice: 0}
+        {zipCode: 30339, averagePrice: 0, town: "Vinings"}, 
+        {zipCode: 30327, averagePrice: 0, town: "Buckhead"}, 
+        {zipCode: 30342, averagePrice: 0, town: "Buckhead"}, 
+        {zipCode: 30319, averagePrice: 0, town: "Buckhead"}, 
+        {zipCode: 30341, averagePrice: 0, town: "Chamblee"}, 
+        {zipCode: 30345, averagePrice: 0, town: "Tucker"}, 
+        {zipCode: 30033, averagePrice: 0, town: "Decatur"}, 
+        {zipCode: 30329, averagePrice: 0, town: "North Druid Hills"}, 
+        {zipCode: 30324, averagePrice: 0, town: "Intown Atlanta"}, 
+        {zipCode: 30326, averagePrice: 0, town: "Lenox"}, 
+        {zipCode: 30305, averagePrice: 0, town: "Buckhead"}, 
+        {zipCode: 30318, averagePrice: 0, town: "West Side Atlanta"}, 
+        {zipCode: 30363, averagePrice: 0, town: "Atlantic Station"}, 
+        {zipCode: 30309, averagePrice: 0, town: "Midtown"}, 
+        {zipCode: 30306, averagePrice: 0, town: "Virginia Highlands"}, 
+        {zipCode: 30307, averagePrice: 0, town: "Little Fives"}, 
+        {zipCode: 30030, averagePrice: 0, town: "Decatur"}, 
+        {zipCode: 30079, averagePrice: 0, town: "Scottdale"}, 
+        {zipCode: 30002, averagePrice: 0, town: "Avondale Estates"}, 
+        {zipCode: 30032, averagePrice: 0, town: "South Decatur"}, 
+        {zipCode: 30317, averagePrice: 0, town: "East Lake"}, 
+        {zipCode: 30316, averagePrice: 0, town: "Cabbagetown"}, 
+        {zipCode: 30315, averagePrice: 0, town: "Lakewood Heights"}, 
+        {zipCode: 30354, averagePrice: 0, town: "Hapeville"}, 
+        {zipCode: 30337, averagePrice: 0, town: "College Park"}, 
+        {zipCode: 30344, averagePrice: 0, town: "East Point"}, 
+        {zipCode: 30310, averagePrice: 0, town: "West End"}, 
+        {zipCode: 30311, averagePrice: 0, town: "Cascade Heights"}, 
+        {zipCode: 30308, averagePrice: 0, town: "Old Forth Ward"}, 
+        {zipCode: 30313, averagePrice: 0, town: "Grant Park"}, 
+        {zipCode: 30303, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30314, averagePrice: 0, town: "Hunter Hills"}, 
+        {zipCode: 30312, averagePrice: 0, town: "Grant Park"},
+        {zipCode: 30301, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30302, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30304, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30322, averagePrice: 0, town: "North Decatur"}, 
+        {zipCode: 30328, averagePrice: 0, town: "Sandy Springs"}, 
+        {zipCode: 30330, averagePrice: 0, town: "Adams Park"}, 
+        {zipCode: 30331, averagePrice: 0, town: "Sandtown"}, 
+        {zipCode: 30334, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30336, averagePrice: 0, town: "South West Atlanta"}, 
+        {zipCode: 30320, averagePrice: 0, town: "College Park"}, 
+        {zipCode: 30321, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30325, averagePrice: 0, town: "Vinings"}, 
+        {zipCode: 30332, averagePrice: 0, town: "Midtown"}, 
+        {zipCode: 30333, averagePrice: 0, town: "North Druid Hills"}, 
+        {zipCode: 30338, averagePrice: 0, town: "Dunwoody"}, 
+        {zipCode: 30340, averagePrice: 0, town: "Doraville"}, 
+        {zipCode: 30343, averagePrice: 0, town: "Downtowm"}, 
+        {zipCode: 30346, averagePrice: 0, town: "Dunwoody"}, 
+        {zipCode: 30348, averagePrice: 0, town: "Buckhead"}, 
+        {zipCode: 30353, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30357, averagePrice: 0, town: "Midtown"}, 
+        {zipCode: 30360, averagePrice: 0, town: "Dunwoody"}, 
+        {zipCode: 30361, averagePrice: 0, town: "Piedmont Park"}, 
+        {zipCode: 30362, averagePrice: 0, town: "Embry Hills"}, 
+        {zipCode: 30349, averagePrice: 0, town: "South Atlanta"}, 
+        {zipCode: 30350, averagePrice: 0, town: "Dunwoody"}, 
+        {zipCode: 30355, averagePrice: 0, town: "Peachtree Park"}, 
+        {zipCode: 30356, averagePrice: 0, town: "Dunwoody"}, 
+        {zipCode: 30358, averagePrice: 0, town: "Sandy Springs"}, 
+        {zipCode: 30359, averagePrice: 0, town: "North Druid Hills"}, 
+        {zipCode: 30364, averagePrice: 0, town: "East Point"}, 
+        {zipCode: 30369, averagePrice: 0, town: "West Atlanta"}, 
+        {zipCode: 30370, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30375, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30377, averagePrice: 0, town: "West Atlanta"}, 
+        {zipCode: 30384, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30385, averagePrice: 0, town: "Hapeville"}, 
+        {zipCode: 30394, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30396, averagePrice: 0, town: "Mountain View"}, 
+        {zipCode: 30366, averagePrice: 0, town: "Chamblee"}, 
+        {zipCode: 30368, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30371, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30378, averagePrice: 0, town: "West Atlanta"}, 
+        {zipCode: 30380, averagePrice: 0, town: "South Atlanta"}, 
+        {zipCode: 30388, averagePrice: 0, town: "Mountain View"}, 
+        {zipCode: 30392, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 30398, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 31106, averagePrice: 0, town: "City Hall"}, 
+        {zipCode: 31107, averagePrice: 0, town: "City Hall"}, 
+        {zipCode: 31131, averagePrice: 0, town: "Greenbriar"}, 
+        {zipCode: 31136, averagePrice: 0, town: "West Atlanta"}, 
+        {zipCode: 31119, averagePrice: 0, town: "North Buckhead"}, 
+        {zipCode: 31126, averagePrice: 0, town: "Buckhead Heights"}, 
+        {zipCode: 31139, averagePrice: 0, town: "Vinings"}, 
+        {zipCode: 31141, averagePrice: 0, town: "Chamblee"}, 
+        {zipCode: 31146, averagePrice: 0, town: "Dunwoody"}, 
+        {zipCode: 31192, averagePrice: 0, town: "Union City"}, 
+        {zipCode: 31196, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 31145, averagePrice: 0, town: "Brookhaven"}, 
+        {zipCode: 31150, averagePrice: 0, town: "Roswell"}, 
+        {zipCode: 31156, averagePrice: 0, town: "Sandy Springs"}, 
+        {zipCode: 31193, averagePrice: 0, town: "Hapeville"}, 
+        {zipCode: 31195, averagePrice: 0, town: "Downtown"}, 
+        {zipCode: 39901, averagePrice: 0, town: "Chamblee"}
     ]
 
     // Grabbing User Data from Firebase
@@ -135,7 +135,7 @@ $(async() => {
         const userInfo = await doc.data(currentUserObj.lastName);
         userIncome = userInfo.income;
     }
- 
+
 
     // Find Budget Amount
 
@@ -244,8 +244,6 @@ $(async() => {
 
 
     var recommendations = recommendNeighborhood(zipCodesATL, budgetOfPerson);
-    console.log(zipCodesATL);
-    console.log(recommendations);
 
     if (recommendations.length < 1){
 
@@ -326,12 +324,26 @@ $(async() => {
             return incomeDataArr
         })
 
+        // Accessing Neighborhood Name for each Recommendation
+
+        var neighborhoodName = (recommendation, zipArray) => {
+            let neighborhood = "";
+            for (let i = 0 ; i < zipArray.length ; i++){
+                if (zipArray[i].zipCode == recommendation){
+                    neighborhood = zipArray[i].town;
+                }
+            }return neighborhood
+        }
+
+
+
         // Making the graphs and appending them to the HTML
 
         var $main = $('.cardContainer')
     
         for(let i = 0; i < arrRecommendations.length; i++) {
             var recommendation = arrRecommendations[i];
+            var townName = neighborhoodName(threeRecommendations[i], zipCodesATL);
             var id = i + 1;
             var integersToWordsArray = ["One", "Two", "Three"]
         
@@ -346,7 +358,7 @@ $(async() => {
             var $divCard = $('<div class="card m-1">');
             var $divContainer = $('<div class="container-sm flex-sm-column col-lg-4">');
 
-            $h3RecTitle.html(`<h3>Neighborhood ${integersToWordsArray[i]}:</h3> <h4>Zipcode - ${threeRecommendations[i]}</h4>`);
+            $h3RecTitle.html(`<h3 class="navyFont">${townName}:</h3> <h4 class="navyFont">Zipcode - <a href="https://www.realtor.com/realestateandhomes-search/${threeRecommendations[i]}" target="_blank">${threeRecommendations[i]}</a></h4>`);
         
             $divCanvas.append($canvasBar);
             $divCanvas.append($canvasPie);
@@ -373,7 +385,7 @@ $(async() => {
                         borderColor: '#e07a5f',
                         borderWidth: 2,
                         data: ageDataRec,
-                        hoverBackgroundColor: 'purple',
+                        hoverBackgroundColor: '#f4f1de',
                     }]
                     
                 },
@@ -419,7 +431,7 @@ $(async() => {
                         borderColor: 'white',
                         borderWidth: 2,
                         data: housingDataRec,
-                        hoverBackgroundColor: 'purple',
+                        hoverBackgroundColor: '#f4f1de',
                     }]
                 
                 },
@@ -440,7 +452,7 @@ $(async() => {
                 data: {
                     labels: ['<$10K', '$10K - $14K', '$15K - $24K', '$25K - $34K', '$35K - $49K', '$50K - $74K', '$75K - $99K', '$100K - $149K', '$150K - $199K', '>$200K'],
                     datasets: [{
-                        pointBackgroundColor: 'purple',
+                        pointBackgroundColor: '#f4f1de',
                         borderColor: '#3d405b',
                         borderWidth: 2,
                         data: incomeDataRec,
