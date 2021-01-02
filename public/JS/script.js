@@ -1,3 +1,7 @@
+// $(window).on('load', function(){
+//     $('loader-box').fadeOut('slow');
+// });
+
 
 // const auth = firebase.auth();
 
@@ -125,12 +129,13 @@ $(async() => {
     const doc = await docRef.get();
     let userPreference;
     let userZipArr;
-     let userIncome;
+    let userIncome;
 
     if (doc) {
         const userInfo = await doc.data(currentUserObj.lastName);
         userIncome = userInfo.income;
     }
+
 
     // Find Budget Amount
 
@@ -239,8 +244,6 @@ $(async() => {
 
 
     var recommendations = recommendNeighborhood(zipCodesATL, budgetOfPerson);
-    console.log(zipCodesATL);
-    console.log(recommendations);
 
     if (recommendations.length < 1){
 
@@ -321,12 +324,26 @@ $(async() => {
             return incomeDataArr
         })
 
+        // Accessing Neighborhood Name for each Recommendation
+
+        var neighborhoodName = (recommendation, zipArray) => {
+            let neighborhood = "";
+            for (let i = 0 ; i < zipArray.length ; i++){
+                if (zipArray[i].zipCode == recommendation){
+                    neighborhood = zipArray[i].town;
+                }
+            }return neighborhood
+        }
+
+
+
         // Making the graphs and appending them to the HTML
 
         var $main = $('.cardContainer')
     
         for(let i = 0; i < arrRecommendations.length; i++) {
             var recommendation = arrRecommendations[i];
+            var townName = neighborhoodName(threeRecommendations[i], zipCodesATL);
             var id = i + 1;
             var integersToWordsArray = ["One", "Two", "Three"]
         
@@ -341,7 +358,7 @@ $(async() => {
             var $divCard = $('<div class="card m-1">');
             var $divContainer = $('<div class="container-sm flex-sm-column col-lg-4">');
 
-            $h3RecTitle.html(`<h3 class="navyFont">Neighborhood ${integersToWordsArray[i]}:</h3> <h4 class="navyFont">Zipcode - ${threeRecommendations[i]}</h4>`);
+            $h3RecTitle.html(`<h3 class="navyFont">${townName}:</h3> <h4 class="navyFont">Zipcode - <a href="https://www.realtor.com/realestateandhomes-search/${threeRecommendations[i]}" target="_blank">${threeRecommendations[i]}</a></h4>`);
         
             $divCanvas.append($canvasBar);
             $divCanvas.append($canvasPie);
@@ -439,7 +456,8 @@ $(async() => {
                         borderColor: '#3d405b',
                         borderWidth: 2,
                         data: incomeDataRec,
-                        hoverBackgroundColor: '#e07a5f',
+                        hoverBackgroundColor: 'orange',
+                        label: "",
                     }]
                     
                 },
