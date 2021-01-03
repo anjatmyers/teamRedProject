@@ -14,10 +14,11 @@ Neighborhood Swatch is an application designed for home buyers who are looking t
 
 
 ## **Running the project**
-* Sign-ins are through Google so user will need a gmail account. * App will be hosted after 1/4/21 and the link will be provided here. 
+* Sign-ins are through Google so user will need a gmail account.
+* App will be hosted after 1/4/21 and the link will be provided here. 
 
 
-## **Team Members**
+## **Team**
 
 - Ally Deeter - managed APIs and javascript logic
 - Adam MacKinnon - controlled log-in functionality and data storage
