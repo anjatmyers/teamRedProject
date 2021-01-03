@@ -23,3 +23,6 @@ Neighborhood Swatch is an application designed for home buyers who are looking t
 - Ally Deeter - managed APIs and javascript logic
 - Adam MacKinnon - controlled log-in functionality and data storage
 - Andrea Myers - directed sign design and page layouts 
+
+
+<img src="public/images/skyline.png" alt="alt text" width="800px" height="auto">
