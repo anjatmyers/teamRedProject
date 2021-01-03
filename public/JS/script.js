@@ -3,18 +3,16 @@
 // });
 
 
-// const auth = firebase.auth();
+
 
 db.collection('profileData');
-// const whenSignedIn = document.getElementById('whenSignedIn');
-// const whenSignedOut = document.getElementById('whenSignedOut');
+
 const signOutButton1 = document.getElementById('signOutButton1');
-// const userDetails = document.getElementById('userDetails');
 const profileForm = document.getElementById('profileForm');
 const submitButton = document.getElementById('submitButton');
 
 signOutButton.onclick = () => auth.signOut();
-// signOutButton1.onclick = () => auth.signOut();
+
 
 
 const currentUser = localStorage.getItem("currentUser")
