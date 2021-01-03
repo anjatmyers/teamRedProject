@@ -359,7 +359,7 @@ $(async() => {
             var $divCard = $('<div class="card m-1">');
             var $divContainer = $('<div class="container-sm flex-sm-column col-lg-4">');
 
-            $h3RecTitle.html(`<h3 class="navyFont">${townName}:</h3> <h4 class="navyFont">Zipcode - <a href="https://www.realtor.com/realestateandhomes-search/${threeRecommendations[i]}" target="_blank">${threeRecommendations[i]}</a></h4>`);
+            $h3RecTitle.html(`<h3 class="navyFont">${townName}:</h3> <h4 class="navyFont">Zipcode - <a href="https://www.realtor.com/realestateandhomes-search/${threeRecommendations[i]}" target="_blank" class="navyFont">${threeRecommendations[i]}</a></h4>`);
         
             $divCanvas.append($canvasBar);
             $divCanvas.append($canvasPie);
