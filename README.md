@@ -25,4 +25,4 @@ Neighborhood Swatch is an application designed for home buyers who are looking t
 - Andrea Myers - directed sign design and page layouts 
 
 
-<img src="public/images/skyline.png" alt="alt text" width="800px" height="auto">
+<img src="public/images/skyline.png" alt="alt text" width="1000px" height="auto">
