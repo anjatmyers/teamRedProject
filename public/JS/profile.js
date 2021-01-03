@@ -1,12 +1,7 @@
 
 
 db.collection('profileData');
-// const whenSignedIn = document.getElementById('whenSignedIn');
-// const whenSignedOut = document.getElementById('whenSignedOut');
 const signOutButton = document.getElementById('signOutButton');
-// const userDetails = document.getElementById('userDetails');
-// const profileForm = document.getElementById('profileForm');
-// const submitButton = document.getElementById('submitButton');
 signOutButton.onclick = () => auth.signOut();
 
 
@@ -47,6 +42,12 @@ docRef.get().then(function(doc) {
     .catch(function(error) {
         console.error("Error building profile: ", error);
     });
+    let $modal = $('#submittedPopUp');
+        $modal.modal('show');
+        let $homeButton = $('#homeButton');
+        $homeButton.click(function(){
+            window.location = "home.html";
+        })
 })
 
 

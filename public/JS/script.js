@@ -3,18 +3,16 @@
 // });
 
 
-// const auth = firebase.auth();
+
 
 db.collection('profileData');
-// const whenSignedIn = document.getElementById('whenSignedIn');
-// const whenSignedOut = document.getElementById('whenSignedOut');
+
 const signOutButton1 = document.getElementById('signOutButton1');
-// const userDetails = document.getElementById('userDetails');
 const profileForm = document.getElementById('profileForm');
 const submitButton = document.getElementById('submitButton');
 
 signOutButton.onclick = () => auth.signOut();
-// signOutButton1.onclick = () => auth.signOut();
+
 
 
 const currentUser = localStorage.getItem("currentUser")
@@ -359,7 +357,7 @@ $(async() => {
             var $divCard = $('<div class="card m-1">');
             var $divContainer = $('<div class="container-sm flex-sm-column col-lg-4">');
 
-            $h3RecTitle.html(`<h3 class="navyFont">${townName}:</h3> <h4 class="navyFont">Zipcode - <a href="https://www.realtor.com/realestateandhomes-search/${threeRecommendations[i]}" target="_blank">${threeRecommendations[i]}</a></h4>`);
+            $h3RecTitle.html(`<h3 class="navyFont">${townName}:</h3> <h4 class="navyFont">Zipcode - <a href="https://www.realtor.com/realestateandhomes-search/${threeRecommendations[i]}" target="_blank" class="navyFont">${threeRecommendations[i]}</a></h4>`);
         
             $divCanvas.append($canvasBar);
             $divCanvas.append($canvasPie);
