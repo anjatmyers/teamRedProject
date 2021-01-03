@@ -1,9 +1,7 @@
-# Neighborhood Swatch
-
 ![Logo](public/images/logo_1_black.png)
 
 ## **Overview**
-Neighborhood Swatch is an application designed for home buyers who are looking to relocate to Atlanta, Georgia. Purchasing a home is a huge undertaking and the process can become overwhelming when also relocating to a new city. Neighborhood Swatch was created to give users a place to start by matching their income with three suggested neighborhoods where they can start their search. After populating three matches, the user is provided with resources that explain the home buying process. Links are also available for each zip code where the user can browse homes in each area on Realtor.com. 
+Neighborhood Swatch is an application designed for home buyers who are looking to relocate to Atlanta, Georgia. Purchasing a home is a huge undertaking and the process can become overwhelming when also relocating to a new city. Neighborhood Swatch was created to give users a place to start their search by matching their income with three suggested neighborhoods. After populating data for three matches, the user is provided with resources that explain the home buying process. Links are also available for each zip code where the user can browse homes in each area on Realtor.com. 
 
 ## **Technologies Used**
 * Javascript 
@@ -21,9 +19,6 @@ Signing into the application is through Google so user will need a gmail account
 
 ## **Team Members**
 
-- *Ally Deeter*
-- *Adam MacKinnon*
-- *Andrea Myers*
-
-
-Format: ![Alt Text](url)
+- Ally Deeter - managed APIs and javascript logic
+- Adam MacKinnon - controlled log-in functionality and data storage
+- Andrea Myers - directed sign design and page layouts 
