@@ -14,7 +14,7 @@ Neighborhood Swatch is an application designed for home buyers who are looking t
 
 
 ## **Running the project**
-* Sign-ins are through Google so user will need a gmail account.
+* Users sign in through Google so will need a gmail account.
 * App will be hosted after 1/4/21 and the link will be provided here. 
 
 
