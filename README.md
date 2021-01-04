@@ -1,3 +1,4 @@
+
 <img src="public/images/logo_1_black.png" alt="alt text" width="auto" height="200px">
 
 ## **Overview**
@@ -15,7 +16,7 @@ Neighborhood Swatch is an application designed for home buyers who are looking t
 
 
 ## **Running the project**
-* Users sign in through Google so will need a gmail account.
+* Users sign in through Google and will need a gmail account.
 * App will be hosted after 1/4/21 and the link will be provided here. 
 
 
@@ -27,3 +28,4 @@ Neighborhood Swatch is an application designed for home buyers who are looking t
 
 
 <img src="public/images/skyline.png" alt="alt text" width="1000px" height="auto">
+
