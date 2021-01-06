@@ -1,6 +1,6 @@
 
 
-db.collection('profileData');
+db.collection('profileDataPROD');
 const signOutButton = document.getElementById('signOutButton');
 signOutButton.onclick = () => auth.signOut();
 
@@ -12,10 +12,11 @@ profileForm.addEventListener('submit', (e) =>{
     let userId = `${profileForm.lastname.value}`;
     // + (Math.floor(Math.random() * 1000)); add this to line 23 to generate random number with uer ID to prevent duplicates in last name.  
     // lastName = profileForm.lastname.value;
-    db.collection("profileData").doc(userId).set({
+    db.collection("profileDataPROD").doc(userId).set({
         firstName : profileForm.firstname.value,
         lastName : profileForm.lastname.value,
-        preference : profileForm.cityOrSuburb.value,
+        preference1 : profileForm.cityOrSuburb.value,
+        preference2 : profileForm.cityOrSuburb.value,
         expenses : profileForm.expenses.value, 
         income : profileForm.income.value
     })
@@ -24,7 +25,7 @@ profileForm.addEventListener('submit', (e) =>{
     
     .then(function() {
         console.log("profile built!");
-        let docRef = db.collection("profileData").doc(userId);
+        let docRef = db.collection("profileDataPROD").doc(userId);
 
 docRef.get().then(function(doc) {
     if (doc.exists) {

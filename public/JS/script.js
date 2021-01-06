@@ -5,7 +5,7 @@
 
 
 
-db.collection('profileData');
+db.collection('profileDataPROD');
 
 const signOutButton1 = document.getElementById('signOutButton1');
 const profileForm = document.getElementById('profileForm');
@@ -18,7 +18,7 @@ signOutButton.onclick = () => auth.signOut();
 const currentUser = localStorage.getItem("currentUser")
 const currentUserObj = JSON.parse(currentUser);
 
-var docRef = db.collection("profileData").doc(currentUserObj.lastName);
+var docRef = db.collection("profileDataPROD").doc(currentUserObj.lastName);
 
 $(async() => {
 
