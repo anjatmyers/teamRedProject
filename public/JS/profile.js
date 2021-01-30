@@ -8,10 +8,7 @@ signOutButton.onclick = () => auth.signOut();
 
 profileForm.addEventListener('submit', (e) =>{
     e.preventDefault();
-    // Sets users last name as doc id in Firebase.  FLAW:  Multiple last names will result in overwrite.
     let userId = `${profileForm.lastname.value}`;
-    // + (Math.floor(Math.random() * 1000)); add this to line 23 to generate random number with uer ID to prevent duplicates in last name.  
-    // lastName = profileForm.lastname.value;
     db.collection("profileDataPROD").doc(userId).set({
         firstName : profileForm.firstname.value,
         lastName : profileForm.lastname.value,
