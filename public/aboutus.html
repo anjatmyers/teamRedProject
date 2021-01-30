@@ -51,7 +51,7 @@
           <a class="dropdown-item" href="resources.html">Resources</a>
           <a class="dropdown-item" href="aboutus.html">About Us</a>
           <!-- <div class="dropdown-divider"></div> -->
-          <a class="dropdown-item" id="signOutButtonAU" href="index.html">Sign Out</a>
+          <!-- <a class="dropdown-item" id="signOutButton" href="index.html">Sign Out</a> -->
         </div>
       
     </div>
@@ -70,7 +70,7 @@
         <a class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 26px;" href="profile.html">Profile</a>
         <a class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 26px;" href="resources.html">Resources</a>
         <a class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 26px;" href="aboutus.html">About Us</a>
-        <a id="signOutButton" class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 20px;" href="index.html">Sign Out</a>
+        <!-- <a id="signOutButton" class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 20px;" href="index.html">Sign Out</a> -->
     </nav>
   </div> 
   <!-- end of navbar container -->
@@ -188,12 +188,12 @@
 </div>
 <!-- end of div container -->
 
-
+<script src = "JS/config.js"></script>
 <script>
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
-    apiKey: "AIzaSyCtJ3p51WD9L3iKPi3-cMjWIE6Qvp4I03E",
+    apiKey: fireBaseKey,
     authDomain: "neighborhood-swatch.firebaseapp.com",
     projectId: "neighborhood-swatch",
     storageBucket: "neighborhood-swatch.appspot.com",
@@ -205,9 +205,6 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 </script>
-<script src="JS/auth.js"></script>
-<script src="JS/app.js" defer></script>
-<script src="JS/script.js" defer></script>
 
 
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->

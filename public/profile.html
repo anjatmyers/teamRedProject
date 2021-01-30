@@ -9,8 +9,6 @@
 <!-- <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script> -->
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
 
 <!-- Bootstrap CSS for design-->
@@ -47,8 +45,6 @@
             <a class="dropdown-item" href="profile.html">Profile</a>
             <a class="dropdown-item" href="resources.html">Resources</a>
             <a class="dropdown-item" href="aboutus.html">About Us</a>
-            <!-- <div class="dropdown-divider"></div> -->
-            <a id="signOutButton" class="dropdown-item" href="index.html">Sign Out</a>
         </div>
         
     </div>
@@ -67,7 +63,7 @@
         <a class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 26px;" href="profile.html">Profile</a>
         <a class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 26px;" href="resources.html">Resources</a>
         <a class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 26px;" href="aboutus.html">About Us</a>
-        <a id="signOutButton" class="navbar-brand p-xl-2 mx-xl-4 mx-2" style="color: #f4f1de; font-size: 20px;" href="index.html">Sign Out</a>
+
     </nav>
 </div> 
 <!-- end of navbar container -->
@@ -172,6 +168,9 @@
 
 </div>
 <!-- end of div container -->
+<div class="submitModal">
+  
+</div>
 
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
      <script
@@ -182,9 +181,10 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <!-- end of jQuery/bootstrap script tags -->
+  <script src="JS/config.js"></script>
   <script>
     var firebaseConfig = {
-      apiKey: "AIzaSyCtJ3p51WD9L3iKPi3-cMjWIE6Qvp4I03E",
+      apiKey: fireBaseKey,
       authDomain: "neighborhood-swatch.firebaseapp.com",
       projectId: "neighborhood-swatch",
       storageBucket: "neighborhood-swatch.appspot.com",
@@ -202,7 +202,6 @@
   <script src="JS/profile.js" defer></script>
   <script src="JS/script.js" defer></script>
   <script src="JS/config.js" defer></script>
-  <!-- <script src="js/auth.js"></script> -->
 
 </body>
 </html>
