@@ -40,12 +40,14 @@ docRef.get().then(function(doc) {
     .catch(function(error) {
         console.error("Error building profile: ", error);
     });
+
     let $modal = $('#submittedPopUp');
         $modal.modal('show');
         let $homeButton = $('#homeButton');
         $homeButton.click(function(){
             window.location = "home.html";
         })
+
 })
 
 
