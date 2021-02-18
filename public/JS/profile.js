@@ -2,7 +2,7 @@
 
 db.collection('profileDataPROD');
 const signOutButton = document.getElementById('signOutButton');
-signOutButton.onclick = () => auth.signOut();
+
 
 
 
